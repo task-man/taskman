@@ -91,7 +91,7 @@ function Login() {
                         <h2 className="title">Sign up</h2>
                         <div className="input-field">
                             <i className="fas fa-user"></i>
-                            <input type="text" placeholder="username" value={signUpObject.username}
+                            <input type="text" placeholder="Username" value={signUpObject.username}
                                 onChange={event => setSignUpObject({ ...signUpObject, username: event.target.value })}
                             ></input>
                         </div>
@@ -103,7 +103,7 @@ function Login() {
                         </div>
                         <div className="input-field">
                             <i className="fas fa-lock"></i>
-                            <input type="password" placeholder="password" value={signUpObject.password}
+                            <input type="password" placeholder="Password" value={signUpObject.password}
                                 onChange={event => setSignUpObject({ ...signUpObject, password: event.target.value })}
                             ></input>
                         </div>
