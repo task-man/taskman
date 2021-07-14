@@ -443,3 +443,11 @@ form.sign-up-form{
         left: 50%;
     }
 }
+
+.loader{
+    display: block;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    background: inherit;
+}

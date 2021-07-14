@@ -1,9 +1,13 @@
-
+import Navbar from "./Navbar";
+import Task from "./Task";
 
 function Dashboard(){
 
     return(
-        <h3>Welcome to Dashboard!</h3>
+        <div>
+        <Navbar/>
+        <Task/>
+        </div>
     )
 }
 

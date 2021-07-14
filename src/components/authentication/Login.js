@@ -4,6 +4,8 @@ import './Login.css'
 import loginImg from '../../images/login.svg'
 import signupImg from '../../images/signup.svg'
 import { useHistory } from "react-router";
+import BounceLoader from "react-spinners/ClipLoader";
+import LoadingOverlay from 'react-loading-overlay'
 
 //initial login state
 const login_state = {
@@ -29,6 +31,7 @@ function Login() {
 
     const history = useHistory();
     const [className, setClassName] = useState('container');
+    const [isLoading, setIsLoading] = useState(false)
     const [loginObject, setloginObject] = useState(login_state)
     const [signUpObject, setSignUpObject] = useState(signup_state)
 
@@ -48,19 +51,29 @@ function Login() {
             setloginObject({ ...loginObject, login_password: 'error-input-field' })
         }
         else {
+            setIsLoading(true)
             axios.post('https://umesh-task-manager.herokuapp.com/users/login', login_parameter)
                 .then(response => {
                     console.log(response);
+                    setIsLoading(false)
                     let state_value = response.status
                     if (state_value === 200) {
+                        setIsLoading(false)
                         localStorage.setItem('token', response.data.token)
                         history.push('/dashboard');
                     }
                     localStorage.setItem("access-token", response.data);
                 }).catch(error => {
-                    let state_value = error.response.status
-                    if (state_value === 400)
-                    setloginObject({ ...loginObject, error_field: 'error-field-show' })
+                    if (!error.response) {
+                        setIsLoading(false)
+                        history.push('/auth/error');
+                    }
+                    else {
+                        setIsLoading(false)
+                        let state_value = error.response.status
+                        if (state_value === 503 || 400)
+                            setloginObject({ ...loginObject, error_field: 'error-field-show' })
+                    }
                 }
                 );
         }
@@ -72,7 +85,7 @@ function Login() {
         event.preventDefault();
 
         const signup_parameter = {
-            name:signUpObject.username,
+            name: signUpObject.username,
             email: signUpObject.email,
             password: signUpObject.password,
         }
@@ -87,22 +100,31 @@ function Login() {
             setSignUpObject({ ...signUpObject, signup_password: 'error-input-field' })
         }
         else {
+            setIsLoading(true)
             axios.post('https://umesh-task-manager.herokuapp.com/users', signup_parameter)
                 .then(response => {
-                    console.log(response);
+                    setIsLoading(false)
                     let state_value = response.status
-                    if (state_value === 200) {
+                    if (state_value === 201) {
+                        setIsLoading(false)
                         localStorage.setItem('token', response.data.token)
+                        alert("Sign up is successful!")
                         history.push('/dashboard');
                     }
                     localStorage.setItem("access-token", response.data);
                 }).catch(error => {
-                    console.log(error.response)
-                    let state_value = error.response.status
-                    if (state_value === 503)
-                    setloginObject({ ...loginObject, error_field: 'error-field-show' })
+                    if (!error.response) {
+                        setIsLoading(false)
+                        history.push('/auth/error');
+                    }
+                    else {
+                        setIsLoading(false)
+                        let state_value = error.response.status
+                        if (state_value === 503 || 400)
+                            setloginObject({ ...loginObject, error_field: 'error-field-show' })
+                    }
                 }
-                );
+                )
         }
 
     }
@@ -115,7 +137,10 @@ function Login() {
         setClassName('container')
     }
 
-    return (
+    return <LoadingOverlay
+        active={isLoading}
+        spinner={<BounceLoader />}>
+
         <div className={className}>
             <div className="form-container">
                 <div className="signin-signup">
@@ -171,7 +196,8 @@ function Login() {
                         <div className={signUpObject.signup_username}>
                             <i className="fas fa-user"></i>
                             <input type="text" placeholder="Username" value={signUpObject.username}
-                                onChange={event => setSignUpObject({ ...signUpObject, username: event.target.value,
+                                onChange={event => setSignUpObject({
+                                    ...signUpObject, username: event.target.value,
                                     signup_username: 'input-field', error_field: 'error-field-hide'
                                 })}
                             ></input>
@@ -179,7 +205,8 @@ function Login() {
                         <div className={signUpObject.signup_email}>
                             <i className="fas fa-envelope"></i>
                             <input type="text" placeholder="Email" value={signUpObject.email}
-                                onChange={event => setSignUpObject({ ...signUpObject, email: event.target.value,
+                                onChange={event => setSignUpObject({
+                                    ...signUpObject, email: event.target.value,
                                     signup_email: 'input-field', error_field: 'error-field-hide'
                                 })}
                             ></input>
@@ -187,7 +214,8 @@ function Login() {
                         <div className={signUpObject.signup_password}>
                             <i className="fas fa-lock"></i>
                             <input type="password" placeholder="Password" value={signUpObject.password}
-                                onChange={event => setSignUpObject({ ...signUpObject, password: event.target.value,
+                                onChange={event => setSignUpObject({
+                                    ...signUpObject, password: event.target.value,
                                     signup_password: 'input-field', error_field: 'error-field-hide'
                                 })}
                             ></input>
@@ -241,7 +269,7 @@ function Login() {
                 </div>
             </div>
         </div>
-    )
+    </LoadingOverlay>
 }
 
 export default Login;

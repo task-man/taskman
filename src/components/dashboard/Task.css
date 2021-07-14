@@ -1,0 +1,199 @@
+
+#customers {
+  border-collapse: collapse;
+  margin-left: 2.5vw;
+  width: 83vw;
+  margin-right: 2.5vw;
+}
+
+#customers td, #customers th {
+  border: 1px solid rgb(163, 162, 162);
+  padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #04AA6D;
+  color: white;
+}
+
+.Row{
+  margin-top: 2rem;
+  border: 1.5px solid rgb(163, 162, 162);
+  background:#f2f2f2;
+  margin-left: 5vw;
+  margin-right: 5vw;
+  padding: 1vw;
+}
+
+.Col{
+  margin-bottom: 1rem;
+}
+
+.search-box{
+  margin-left: 2.5vw;
+  border:  1px solid rgb(163, 162, 162);
+  height: 30px;
+  width: 200px;
+  font-weight: 500;
+  font-size: 15px;
+  padding: 4px;
+}
+
+.btn-add-task{
+  border: solid 3px;
+  float: right;
+  margin-right: 2.5vw;
+  height: 30px;
+  width: 100px;
+  border-color: green;
+  border-radius: 5px;
+  font-size: 15px;
+  font-weight: 700;
+  transition: 0.75s;
+}
+
+.btn-add-task:hover{
+  color: white;
+  background: #4481eb;
+}
+
+.btn-edit-task{
+  border: solid 3px;
+  height: 30px;
+  width: 100px;
+  border-radius: 5px;
+  border-color: green;
+  font-size: 15px;
+  font-weight: 700;
+  transition: 0.75s;
+}
+
+.btn-edit-task:hover{
+  color: white;
+  background: #4481eb;
+}
+
+.btn-remove-task{
+  border: solid 3px;
+  height: 30px;
+  width: 100px;
+  border-radius: 5px;
+  border-color: red;
+  font-size: 15px;
+  font-weight: 700;
+  transition: 0.75s;
+}
+
+.btn-remove-task:hover{
+  color: white;
+  background: #fa7d87;
+}
+
+
+
+@media (max-width:570px) {
+
+  #customers {
+    border-collapse: collapse;
+    margin-left: 2.5vw;
+    width: 83vw;
+    margin-right: 2.5vw;
+  }
+  
+  #customers td, #customers th {
+    border: 1px solid rgb(163, 162, 162);
+    padding: 8px;
+  }
+  
+  #customers tr:nth-child(even){background-color: #f2f2f2;}
+  
+  #customers tr:hover {background-color: #ddd;}
+  
+  #customers th {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    text-align: left;
+    background-color: #04AA6D;
+    color: white;
+  }
+  
+  
+.Row{
+  margin-top: 2rem;
+  border: 1.5px solid rgb(163, 162, 162);
+  background:#f2f2f2;
+  margin-left: 5vw;
+  margin-right: 5vw;
+  padding: 1vw;
+}
+
+.Col{
+  margin-bottom: 1rem;
+}
+
+.search-box{
+  margin-left: 2.5vw;
+  border:  1px solid rgb(163, 162, 162);
+  height: 30px;
+  width: 200px;
+  font-weight: 500;
+  font-size: 15px;
+  padding: 4px;
+}
+
+.btn-add-task{
+  float: right;
+  margin-right: 2.5vw;
+  height: 30px;
+  width: 100px;
+  border-radius: 5px;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.btn-add-task:hover{
+  color: white;
+  background: #4481eb;
+}
+
+
+.btn-edit-task{
+  border: solid 3px;
+  height: 30px;
+  width: 75px;
+  border-radius: 5px;
+  border-color: green;
+  font-size: 15px;
+  font-weight: 700;
+  transition: 0.75s;
+}
+
+.btn-edit-task:hover{
+  color: white;
+  background: #4481eb;
+}
+
+.btn-remove-task{
+  border: solid 3px;
+  height: 30px;
+  width: 55px;
+  border-radius: 5px;
+  border-color: red;
+  font-size: 15px;
+  font-weight: 700;
+  transition: 0.75s;
+}
+
+.btn-remove-task:hover{
+  color: white;
+  background: #fa7d87;
+}
+
+}
