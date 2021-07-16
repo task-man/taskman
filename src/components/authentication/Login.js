@@ -52,13 +52,14 @@ function Login() {
         }
         else {
             setIsLoading(true)
-            axios.post('https://umesh-task-manager.herokuapp.com/users/login', login_parameter)
+            axios.post('/users/login', login_parameter)
                 .then(response => {
                     console.log(response);
                     setIsLoading(false)
                     let state_value = response.status
                     if (state_value === 200) {
                         setIsLoading(false)
+                        localStorage.setItem('username', response.data.user.email)
                         localStorage.setItem('token', response.data.token)
                         history.push('/dashboard');
                     }
@@ -101,7 +102,7 @@ function Login() {
         }
         else {
             setIsLoading(true)
-            axios.post('https://umesh-task-manager.herokuapp.com/users', signup_parameter)
+            axios.post('/users', signup_parameter)
                 .then(response => {
                     setIsLoading(false)
                     let state_value = response.status

@@ -57,6 +57,26 @@ a:hover{
     display: none;
 }
 
+.btn-logout{
+  border: solid 3px;
+  float: right;
+  margin-right: 2.5vw;
+  height: 30px;
+  background: inherit;
+  margin-top: 17.5px;
+  width: 100px;
+  border-color: green;
+  border-radius: 5px;
+  font-size: 15px;
+  font-weight: 700;
+  transition: 0.75s;
+  color: white;
+}
+
+.btn-logout:hover{
+    border-color: red;
+}
+
 @media (max-width:952px){
 
     label.logo{
@@ -105,5 +125,9 @@ a:hover{
     #check:checked ~ ul{
        display: none;
         
+    }
+
+    .btn-logout{
+        display: block;
     }
 }
