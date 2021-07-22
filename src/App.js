@@ -4,6 +4,7 @@ import Dashboard from './components/dashboard/Dashboard'
 import ErrorLoad from './components/error/ErrorLoad';
 import AddTask from './components/dashboard/AddTask'
 import EditTask from './components/dashboard/EditTask'
+import Task from './components/task/Task';
 import {BrowserRouter as Router,Switch ,Route}  from 'react-router-dom'
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
           <Route exact strict path="/auth/error" component={ErrorLoad} />
           <Route exact strict path="/task/add_or_edit" component={AddTask} />
           <Route exact strict path="/task/:id" component={EditTask} />
+          <Route exact strict path="/task" component={Task} />
         </Switch>
       </Router>
     </div>
