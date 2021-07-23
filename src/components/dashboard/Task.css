@@ -47,12 +47,11 @@
 }
 
 .btn-add-task{
-  border: solid 3px;
+  border: solid 3px green;
   float: right;
   margin-right: 2.5vw;
   height: 30px;
   width: 100px;
-  border-color: green;
   border-radius: 5px;
   font-size: 15px;
   font-weight: 700;

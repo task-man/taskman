@@ -30,7 +30,7 @@ const signup_state = {
 function Login() {
 
     const history = useHistory();
-    const [className, setClassName] = useState('container');
+    const [className, setClassName] = useState('containers');
     const [isLoading, setIsLoading] = useState(false)
     const [loginObject, setloginObject] = useState(login_state)
     const [signUpObject, setSignUpObject] = useState(signup_state)
@@ -131,11 +131,11 @@ function Login() {
     }
 
     const addSignUpMode = () => {
-        setClassName('container sign-up-mode')
+        setClassName('containers sign-up-mode')
     }
 
     const removeSignUpMode = () => {
-        setClassName('container')
+        setClassName('containers')
     }
 
     return <LoadingOverlay
@@ -171,7 +171,7 @@ function Login() {
                         <div className={loginObject.error_field}>
                             <label className="sign-in-label">Invalid Username or Password</label>
                         </div>
-                        <input type="submit" value="Login" className="btn solid"></input>
+                        <input type="submit" value="Login" className="btns solid"></input>
                         <p className="social-text">Or Sign in with social platforms</p>
                         <div className="social-media">
                             <a href="/#" className="social-icon">
@@ -224,7 +224,7 @@ function Login() {
                         <div className={signUpObject.error_field}>
                             <label className="sign-up-label">Invalid Email or Email already exist</label>
                         </div>
-                        <input type="submit" value="Sign up" className="btn solid"></input>
+                        <input type="submit" value="Sign up" className="btns solid"></input>
                         <p className="social-text">Or Sign up with social platforms</p>
                         <div className="social-media">
                             <a href="/#" className="social-icon">
@@ -251,22 +251,22 @@ function Login() {
                     <div className="content">
                         <h3>New here?</h3>
                         <p>Sign up to get into a larger and awesome web application!</p>
-                        <button className="btn transparent" id="sign-up-btn" onClick={addSignUpMode}>Sign up</button>
+                        <button className="btns transparent" id="sign-up-btn" onClick={addSignUpMode}>Sign up</button>
 
                     </div>
 
-                    <img src={loginImg} className="image" alt="some text" />
+                    <img src={loginImg} className="images" alt="some text" />
                 </div>
 
                 <div className="panel right-panel">
                     <div className="content">
                         <h3>One of us?</h3>
                         <p>Sign in to get into a larger and awesome web application!</p>
-                        <button className="btn transparent" id="sign-in-btn" onClick={removeSignUpMode}>Sign in</button>
+                        <button className="btns transparent" id="sign-in-btn" onClick={removeSignUpMode}>Sign in</button>
 
                     </div>
 
-                    <img src={signupImg} className="image" alt="some text" />
+                    <img src={signupImg} className="images" alt="some text" />
                 </div>
             </div>
         </div>
