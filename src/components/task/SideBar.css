@@ -1,7 +1,7 @@
 .sidebar {
     background-color: rgba(13, 101, 217, 1);
-    width: 12em;
-    height: 38em;
+    width: 15em;
+    height: 52em;
     border-bottom-right-radius: 1em;
     border-top-right-radius: 1em;
 }
@@ -10,60 +10,85 @@
     fill: rgba(255, 255, 255, 1);
 }
 
-.Rectangle_32 {
-
-}
-
 .header-logo {
     color: rgba(255, 255, 255, 1);
     font-weight: 600;
-    font-size: 1.4em;
-    margin-left: 1.6em;
-    padding-top: 1.6em;
+    font-size: 1.5em;
+    padding: 1.5em;
+    margin-top: 0.5em;
+    
 }
 
-ul{
-    margin-top: 1em;
+.ul-icons{
+    margin-left: -0.5em;
 }
 
 li{
-    padding-top: 1.8em;
-    margin-left: 0.9em;
+    padding: 1rem;
+    
     color: rgba(148,189,242,1);
     font-weight: 300;
+}
+
+i{
+    padding-right: 1em;
 }
 
 li:hover
 {
     color: rgba(255, 255, 255, 1);
+    cursor: pointer;
 }
 
 .button-logout
 {
-    margin-left: 2.7em;
+    margin-left: 1.5em;
     color: rgba(148,189,242,1);
-    margin-top: 11em;
     background: none;
 }
 
+.button-logout:hover
+{
+    color: rgba(255, 255, 255, 1);
+    cursor: pointer;
+}
+
+
 .horizontal-line
 {
-    width: 8em;
+    width: 10em;
     margin-left: 1em;
     border: 1px solid rgba(148,189,242,1);
 }
 
-.sidebar-text-one
+.sidebar-footer-text
 {
+    display:block;
     font-size: 0.8em;
     color: rgba(148,189,242,1);
-    margin-left: 0.5em;
-    margin-top: -0.5em;
+    margin-left: 1em;
 }
 
-.sidebar-text-two
-{
-    font-size: 0.8em;
-    color: rgba(148,189,242,1);
-    margin-left: 0.5em;
+.sidebar-footer{
+    margin-top: 23.5em;
+    
+}
+
+a{
+    padding: 0.5em;
+    color:rgba(255, 255, 255, 1);
+    text-decoration: none;
+}
+
+a:hover{
+    color: rgba(255, 255, 255, 1);
+    cursor: pointer;
+    background: none;
+    text-decoration: none;
+}
+
+@media (max-width:1100px){
+    .sidebar {
+       display: none;
+    }
 }

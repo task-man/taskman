@@ -6,12 +6,20 @@
     font-family: Montserrat;
 }
 
+body{
+    overflow-x: hidden;
+}
+
 #Screen_main {
-    position: absolute;
+    display: flex;
     width: 100vw;
-    height: 100vh;
+    height: auto;
     background-color: rgb(234, 238, 238);
-    overflow: hidden;
+    overflow-x: hidden;
+}
+
+#Screen_mobile{
+        display: none;
 }
 
 .image{
@@ -19,14 +27,14 @@
     height: 60px;
     top: 0px;
     margin-right: 2rem;
+    margin-top: 0.25em;
 }
 
 .header{
     margin-top: 1.8rem;
     width: 80vw;
-    height: 80px;
-    margin-left: 20vw;
-    border: solid 5px black;
+    height: auto;
+    margin-left: 2em;
 }
 
 .header-user {
@@ -64,7 +72,7 @@
     background: rgba(209,210,212,1);
     border-radius: 0.2rem;
     margin-right: 3rem;
-    margin-top: 15px;
+    margin-top: 12px;
 }
 
 .header-sub-right i{
@@ -72,14 +80,497 @@
     margin-top: 20px;
     text-align: center;
     font-size: 2.1rem;
+    cursor: pointer;
 }
 
 .header-sub-right{
     float: right;
     display: flex;
+    align-items: center;
 }
 
 .header-sub-left{
     float: left;
     
+}
+
+.card{
+    box-shadow: 0 8px 25px rgb(0 0 0 / 0.2);
+    background: rgba(255,255,255,1);
+    width: inherit;
+    height: auto;
+    margin-top: 6em;
+    margin-bottom: 5em;
+    display: block;
+    border-radius: 0.4em;
+    padding: 2em;
+}
+
+.card-row-one{
+    display: flex;
+    margin: 0.5em;
+}
+
+.add-task{
+    display: grid;
+}
+
+.textarea{
+    border: 1px solid rgba(13,101,217,1);
+    border-radius: 0.4em;
+    width: 40vw;
+    height: 12em;
+}
+
+.textarea:focus{
+    border: 2px solid rgba(13,101,217,1);
+    outline: none;
+    
+}
+
+.btn-add-task{
+    background-color: rgba(107,165,242,1);
+    width: 10em;
+    height: 2.5em;
+    color:rgba(255,255,255,1);
+    border: none;
+    margin-top: 2em;
+    border-radius: 0.5em;
+
+}
+
+.progress-task{
+    border: 1px solid rgba(13,101,217,1);
+    border-radius: 0.4em;
+    width: 35em;
+    height: 17em;
+    padding: 0.75em;
+    margin-left: 6vw;
+    display: inline-flex;
+}
+
+.task-heading h3{
+    text-align: left;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    color: black
+}
+
+.task-heading{
+    margin-top: 2em;
+}
+
+.card-row-two{
+    padding: 0.5em;
+}
+
+.btn-fltr-task{
+    background-color: rgba(107,165,242,1);
+    width: 6em;
+    height: 2em;
+    color:rgba(255,255,255,1);
+    border: none;
+    margin-right: 0.5em;
+    border-radius: 0.5em;
+
+}
+
+.btn-fltr-m-task{
+    background-color: rgba(163,157,157,1);
+    width: 7em;
+    height: 2em;
+    color:rgba(255,255,255,1);
+    border: none;
+    margin-right: 0.5em;
+    border-radius: 0.5em;
+
+}
+
+
+.btn-fltr-s-task{
+    background-color: rgba(255,255,255,1);
+    width: 1.5em;
+    height: 1.5em;
+    color:black;
+    border: none;
+    margin-right: 1.5em;
+    border-radius: 1.5em;
+    
+}
+
+.btn-fltr-s-task:hover{
+    background-color: rgb(191, 195, 201);
+    width: 1.5em;
+    height: 1.5em;
+    color:rgb(32, 119, 233);
+    border: none;
+    border-radius: 1.5em;
+}
+
+.dropdown-task{
+    background-color: rgb(255, 255, 255);
+    width: 9em;
+    height: 2.2em;
+    color:rgb(110, 106, 106);
+    border: 1px solid rgb(205, 206, 207);
+    margin-right: 0.5em;
+    border-radius: 0.5em;
+}
+
+.task-table-div{
+    margin-top: 1em;
+    padding: 1em;
+    width: inherit;
+    border: 1px solid rgba(13,101,217,1);
+    border-radius: 0.4em;
+}
+
+.task-table-heading h3{
+    text-align: left;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    color: black
+}
+
+.task-table{
+    width: inherit;
+}
+
+.task-table td, .task-table th {
+    border-bottom: none;
+    padding-left: 1em;
+    padding-right: 7em;
+    padding-top: 1.2em;
+    padding-bottom: 1.2em;
+    text-align: left;
+    font-family: Montserrat;
+    font-size: 18px;
+    color: black
+  }
+  
+  .task-table th {
+    text-align: left;
+    color: black;
+  }
+
+  #task-icon{
+      color:rgb(101, 148, 209);
+      margin-left: 0.5em;
+      cursor: pointer;
+  }
+
+  .progress-task h3{
+    text-align: left;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 15px;
+    color: black
+
+  }
+
+  .progress-task-left label{
+    text-align: left;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 12px;
+    color: rgba(163,157,157,1);
+}
+
+.progress-bar{
+border-radius: 2em;
+height: 0.4em;
+width: 10em;
+}
+
+.progress-bar:focus{
+display: none;
+}
+
+.progress-circle{
+    border: 1em solid rgba(13,101,217,1) ;
+    width: 10em;
+  height:10em;
+  border-radius: 10em;
+  clip: rect(0px, 50px, 100px, 0px);
+  margin-top: 3em;
+}
+
+.progress-task-right{
+padding-left: 7em;
+}
+
+@media (max-width:1500px){
+    #Screen_main{
+        display: none;
+    }
+
+    #Screen_mobile{
+        display: block;
+        width: 100vw;
+        height: auto;
+        background-color: rgb(234, 238, 238);
+        overflow-x: hidden;
+        padding: 0.5em;
+    }
+
+    .header-top i{
+        font-size: 1.5rem;
+        cursor: pointer;
+        
+    }
+    
+    .header-top{ 
+        padding: 0.5em;
+        width: 100vw;
+        text-align: center;
+    }
+
+    .image{
+        width: 40px;
+        height: 40px;
+        top: 0px;
+
+        margin-top:  -1vh; ;
+    }
+    #bell{
+        float: right;
+    }
+
+    #bars{
+        float: left;
+    }
+
+    .header-sub{
+        padding: 0.5em;
+        width: 100vw;
+    }
+    
+.header-user {
+    text-align: left;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 22px;
+    color: rgba(13,101,217,1);
+}
+
+.header-p-task{
+    text-align: left;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 12px;
+    color: rgba(163,157,157,1);
+}
+
+.header-p-task-count{
+    white-space: nowrap;
+    text-align: left;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 12px;
+    color: black;
+}
+
+.task-head h3{
+    text-align: left;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 17px;
+    color: black
+}
+
+.task-head{
+    padding: 0.5em;
+    width: 100vw;
+}
+.add-task-m{
+    display: grid;
+    padding: 0.5em;
+    width: 100vw;
+}
+.textarea-m{
+    border: 1px solid rgba(13,101,217,1);
+    border-radius: 0.4em;
+    width: 90vw;
+    height: 7em;
+}
+
+.textarea-m:focus{
+    border: 2px solid rgba(13,101,217,1);
+    outline: none;
+    
+}
+
+.btn-add-task-m{
+    background-color: rgba(107,165,242,1);
+    width: 5em;
+    height: 1.5em;
+    color:rgba(255,255,255,1);
+    border: none;
+    margin-top: 1em;
+    border-radius: 0.25em;
+}
+
+.btn-fltr{
+    padding: 0.5em;
+    width: 100vw;
+}
+.btn-fltr-task-m{
+    background-color: rgba(107,165,242,1);
+    width: 5em;
+    height: 1.7em;
+    color:rgba(255,255,255,1);
+    border: none;
+    border-radius: 0.25em;
+    margin-right: 0.5em;
+    font-size: 12px;
+}
+
+.btn-fltr-m-task-m{
+    background-color: rgba(163,157,157,1);
+    width: 7em;
+    height: 1.7em;
+    color:rgba(255,255,255,1);
+    border: none;
+    margin-right: 0.5em;
+    border-radius: 0.5em;
+    font-size: 12px;
+}
+
+.task-table-heading-m{
+    padding: 0.5em;
+    width: 100vw;
+}
+
+.task-table-heading-m h3{
+    text-align: left;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 17px;
+    color: black
+}
+.table-m{
+    width: inherit;
+    height: 13em;
+    margin: 0.5em;
+    border: 1px solid rgba(13,101,217,1);
+    border-radius: 0.4em;
+    width: 90vw;
+    background-color: rgba(255,255,255,1);
+}
+
+.tab-row{
+width: 89.7vw;
+height: 2em;
+margin-top: 0.2em;
+align-items: center;
+background-color: rgba(255,255,255,1);
+border-bottom:1px solid rgba(163,157,157,1);
+}
+
+.tab-row input{
+    float: left;
+    height: 20px;
+    margin-left: 0.5em;
+    margin-top: 00.25em;
+}
+
+#bars-table{
+    float: right;
+    margin-top: 00.25em;
+}
+
+.tab-row-m{
+    width: 89.7vw;
+    height: 2em;
+    margin-top: 0.75em;
+    padding-left: 0.5em;
+    align-items: center;
+    background-color: rgba(255,255,255,1);
+    }
+
+.tab-row-lm{
+    width: 89.7vw;
+    height: 2.5em;
+    margin-top: 0.25em;
+    padding-top: 0.35em;
+    align-items: center;
+    padding-left: 0.5em;
+    background-color: rgba(255,255,255,1);
+    border-bottom:1px solid rgba(163,157,157,1);
+    border-top:1px solid rgba(163,157,157,1);
+    }
+
+    .tab-content-l{
+    text-align: left;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    color: black
+    }
+
+    .tab-content-r{
+        padding-right: 0.5em;
+        float: right;
+        font-family: Montserrat;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 16px;
+        color: black
+        }
+#task-icon-l{
+    color:rgb(101, 148, 209);
+      cursor: pointer;
+      padding-top: 0.6em;
+      padding-left: 15vw;
+}
+#task-icon-r{
+    padding-top: 0.6em;
+    float: right;
+    padding-right: 15vw;
+    color:rgb(101, 148, 209);
+    cursor: pointer;
+}
+}
+@media (max-width:410px){
+.tab-row-lm{
+    width: 89.5vw;
+    height: 2.5em;
+    margin-top: 0.25em;
+    padding-top: 0.35em;
+    align-items: center;
+    padding-left: 0.5em;
+    background-color: rgba(255,255,255,1);
+    border-bottom:1px solid rgba(163,157,157,1);
+    border-top:1px solid rgba(163,157,157,1);
+    }
+
+    .tab-row-m{
+        width: 89.5vw;
+        height: 2em;
+        margin-top: 0.75em;
+        padding-left: 0.5em;
+        align-items: center;
+        background-color: rgba(255,255,255,1);
+        }
+
+        .tab-row{
+            width: 89.5vw;
+            height: 2em;
+            margin-top: 0.2em;
+            align-items: center;
+            background-color: rgba(255,255,255,1);
+            border-bottom:1px solid rgba(163,157,157,1);
+            }
 }
