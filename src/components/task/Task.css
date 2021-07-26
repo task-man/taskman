@@ -6,7 +6,7 @@
     font-family: Montserrat;
 }
 
-body{
+body {
     overflow-x: hidden;
 }
 
@@ -18,11 +18,11 @@ body{
     overflow-x: hidden;
 }
 
-#Screen_mobile{
-        display: none;
+#Screen_mobile {
+    display: none;
 }
 
-.image{
+.image {
     width: 60px;
     height: 60px;
     top: 0px;
@@ -30,7 +30,7 @@ body{
     margin-top: 0.25em;
 }
 
-.header{
+.header {
     margin-top: 1.8rem;
     width: 80vw;
     height: auto;
@@ -43,19 +43,19 @@ body{
     font-style: normal;
     font-weight: bold;
     font-size: 25px;
-    color: rgba(13,101,217,1);
+    color: rgba(13, 101, 217, 1);
 }
 
-.header-p-task{
+.header-p-task {
     text-align: left;
     font-family: Montserrat;
     font-style: normal;
     font-weight: bold;
     font-size: 12px;
-    color: rgba(163,157,157,1);
+    color: rgba(163, 157, 157, 1);
 }
 
-.header-p-task-count{
+.header-p-task-count {
     white-space: nowrap;
     text-align: left;
     font-family: Montserrat;
@@ -65,17 +65,17 @@ body{
     color: black;
 }
 
-.header-search{
+.header-search {
     padding: 0.5rem;
     width: 280px;
     height: 40px;
-    background: rgba(209,210,212,1);
+    background: rgba(209, 210, 212, 1);
     border-radius: 0.2rem;
     margin-right: 3rem;
     margin-top: 12px;
 }
 
-.header-sub-right i{
+.header-sub-right i {
     margin-right: 3rem;
     margin-top: 20px;
     text-align: center;
@@ -83,20 +83,20 @@ body{
     cursor: pointer;
 }
 
-.header-sub-right{
+.header-sub-right {
     float: right;
     display: flex;
     align-items: center;
 }
 
-.header-sub-left{
+.header-sub-left {
     float: left;
-    
+
 }
 
-.card{
+.card {
     box-shadow: 0 8px 25px rgb(0 0 0 / 0.2);
-    background: rgba(255,255,255,1);
+    background: rgba(255, 255, 255, 1);
     width: inherit;
     height: auto;
     margin-top: 6em;
@@ -106,41 +106,50 @@ body{
     padding: 2em;
 }
 
-.card-row-one{
+.card-row-one {
     display: flex;
     margin: 0.5em;
 }
 
-.add-task{
+.add-task {
     display: grid;
 }
 
-.textarea{
-    border: 1px solid rgba(13,101,217,1);
-    border-radius: 0.4em;
-    width: 40vw;
-    height: 12em;
+
+.textarea.rdw-editor-main {
+    height: 70%;
+    overflow: auto;
+    box-sizing: border-box;
 }
 
-.textarea:focus{
-    border: 2px solid rgba(13,101,217,1);
+.textarea:focus {
+    border: 2px solid rgba(13, 101, 217, 1);
     outline: none;
-    
 }
 
-.btn-add-task{
-    background-color: rgba(107,165,242,1);
+
+.btn-add-task {
+    background-color: rgba(107, 165, 242, 1);
     width: 10em;
     height: 2.5em;
-    color:rgba(255,255,255,1);
+    color: rgba(255, 255, 255, 1);
     border: none;
-    margin-top: 2em;
+    margin-top: 1em;
     border-radius: 0.5em;
-
 }
 
-.progress-task{
-    border: 1px solid rgba(13,101,217,1);
+.textarea {
+    border: none;
+}
+
+.editor-wrapper-class {
+    border: 1px solid rgba(13, 101, 217, 1);
+    border-radius: 0.4em;
+    height: 16em;
+}
+
+.progress-task {
+    border: 1px solid rgba(13, 101, 217, 1);
     border-radius: 0.4em;
     width: 35em;
     height: 17em;
@@ -149,7 +158,7 @@ body{
     display: inline-flex;
 }
 
-.task-heading h3{
+.task-heading h3 {
     text-align: left;
     font-family: Montserrat;
     font-style: normal;
@@ -158,30 +167,30 @@ body{
     color: black
 }
 
-.task-heading{
+.task-heading {
     margin-top: 2em;
 }
 
-.card-row-two{
+.card-row-two {
     padding: 0.5em;
 }
 
-.btn-fltr-task{
-    background-color: rgba(107,165,242,1);
+.btn-fltr-task {
+    background-color: rgba(107, 165, 242, 1);
     width: 6em;
     height: 2em;
-    color:rgba(255,255,255,1);
+    color: rgba(255, 255, 255, 1);
     border: none;
     margin-right: 0.5em;
     border-radius: 0.5em;
 
 }
 
-.btn-fltr-m-task{
-    background-color: rgba(163,157,157,1);
+.btn-fltr-m-task {
+    background-color: rgba(163, 157, 157, 1);
     width: 7em;
     height: 2em;
-    color:rgba(255,255,255,1);
+    color: rgba(255, 255, 255, 1);
     border: none;
     margin-right: 0.5em;
     border-radius: 0.5em;
@@ -189,45 +198,45 @@ body{
 }
 
 
-.btn-fltr-s-task{
-    background-color: rgba(255,255,255,1);
+.btn-fltr-s-task {
+    background-color: rgba(255, 255, 255, 1);
     width: 1.5em;
     height: 1.5em;
-    color:black;
+    color: black;
     border: none;
     margin-right: 1.5em;
     border-radius: 1.5em;
-    
+
 }
 
-.btn-fltr-s-task:hover{
+.btn-fltr-s-task:hover {
     background-color: rgb(191, 195, 201);
     width: 1.5em;
     height: 1.5em;
-    color:rgb(32, 119, 233);
+    color: rgb(32, 119, 233);
     border: none;
     border-radius: 1.5em;
 }
 
-.dropdown-task{
+.dropdown-task {
     background-color: rgb(255, 255, 255);
     width: 9em;
     height: 2.2em;
-    color:rgb(110, 106, 106);
+    color: rgb(110, 106, 106);
     border: 1px solid rgb(205, 206, 207);
     margin-right: 0.5em;
     border-radius: 0.5em;
 }
 
-.task-table-div{
+.task-table-div {
     margin-top: 1em;
     padding: 1em;
     width: inherit;
-    border: 1px solid rgba(13,101,217,1);
+    border: 1px solid rgba(13, 101, 217, 1);
     border-radius: 0.4em;
 }
 
-.task-table-heading h3{
+.task-table-heading h3 {
     text-align: left;
     font-family: Montserrat;
     font-style: normal;
@@ -236,7 +245,7 @@ body{
     color: black
 }
 
-.task-table{
+.task-table {
     width: inherit;
 }
 
@@ -250,20 +259,20 @@ body{
     font-family: Montserrat;
     font-size: 18px;
     color: black
-  }
-  
-  .task-table th {
+}
+
+.task-table th {
     text-align: left;
     color: black;
-  }
+}
 
-  #task-icon{
-      color:rgb(101, 148, 209);
-      margin-left: 0.5em;
-      cursor: pointer;
-  }
+#task-icon {
+    color: rgb(101, 148, 209);
+    margin-left: 0.5em;
+    cursor: pointer;
+}
 
-  .progress-task h3{
+.progress-task h3 {
     text-align: left;
     font-family: Montserrat;
     font-style: normal;
@@ -271,46 +280,71 @@ body{
     font-size: 15px;
     color: black
 
-  }
+}
 
-  .progress-task-left label{
+.progress-task-left label {
     text-align: left;
     font-family: Montserrat;
     font-style: normal;
     font-weight: bold;
     font-size: 12px;
-    color: rgba(163,157,157,1);
+    color: rgba(163, 157, 157, 1);
 }
 
-.progress-bar{
-border-radius: 2em;
-height: 0.4em;
-width: 10em;
+.progress-bar-in-progress:focus {
+    display: none;
 }
 
-.progress-bar:focus{
-display: none;
+.progress-bar-completed:focus {
+    display: none;
 }
 
-.progress-circle{
-    border: 1em solid rgba(13,101,217,1) ;
+.progress-bar-in-progress {
+    background: rgba(235, 28, 35, 1);
+    border-radius: 2em;
+    height: 0.4em;
     width: 10em;
-  height:10em;
-  border-radius: 10em;
-  clip: rect(0px, 50px, 100px, 0px);
-  margin-top: 3em;
 }
 
-.progress-task-right{
-padding-left: 7em;
+.progress-bar-completed {
+    background: rgba(13, 101, 217, 1);
+    border-radius: 2em;
+    height: 0.4em;
+    width: 10em;
 }
 
-@media (max-width:1500px){
-    #Screen_main{
+.circle {
+    position: relative;
+    top: 5px;
+    left: 5px;
+    text-align: center;
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+    background-color: #ffffff;
+}
+
+.circle-border {
+    position: relative;
+    text-align: center;
+    width: 110px;
+    height: 110px;
+    margin-top: 4em;
+    border-radius: 100%;
+    background-color: #E53B3B;
+    background-image: linear-gradient(162deg, transparent 50%, rgba(13, 101, 217, 1) 50%), linear-gradient(90deg, rgba(13, 101, 217, 1) 50%, transparent 50%);
+}
+
+.progress-task-right {
+    padding-left: 5em;
+}
+
+@media (max-width: 1500px) {
+    #Screen_main {
         display: none;
     }
 
-    #Screen_mobile{
+    #Screen_mobile {
         display: block;
         width: 100vw;
         height: auto;
@@ -319,208 +353,213 @@ padding-left: 7em;
         padding: 0.5em;
     }
 
-    .header-top i{
+    .header-top i {
         font-size: 1.5rem;
         cursor: pointer;
-        
+
     }
-    
-    .header-top{ 
+
+    .header-top {
         padding: 0.5em;
         width: 100vw;
         text-align: center;
     }
 
-    .image{
+    .image {
         width: 40px;
         height: 40px;
         top: 0px;
 
-        margin-top:  -1vh; ;
+        margin-top: -1vh;;
     }
-    #bell{
+
+    #bell {
         float: right;
     }
 
-    #bars{
+    #bars {
         float: left;
     }
 
-    .header-sub{
+    .header-sub {
         padding: 0.5em;
         width: 100vw;
     }
-    
-.header-user {
-    text-align: left;
-    font-family: Montserrat;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 22px;
-    color: rgba(13,101,217,1);
-}
 
-.header-p-task{
-    text-align: left;
-    font-family: Montserrat;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 12px;
-    color: rgba(163,157,157,1);
-}
-
-.header-p-task-count{
-    white-space: nowrap;
-    text-align: left;
-    font-family: Montserrat;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 12px;
-    color: black;
-}
-
-.task-head h3{
-    text-align: left;
-    font-family: Montserrat;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 17px;
-    color: black
-}
-
-.task-head{
-    padding: 0.5em;
-    width: 100vw;
-}
-.add-task-m{
-    display: grid;
-    padding: 0.5em;
-    width: 100vw;
-}
-.textarea-m{
-    border: 1px solid rgba(13,101,217,1);
-    border-radius: 0.4em;
-    width: 90vw;
-    height: 7em;
-}
-
-.textarea-m:focus{
-    border: 2px solid rgba(13,101,217,1);
-    outline: none;
-    
-}
-
-.btn-add-task-m{
-    background-color: rgba(107,165,242,1);
-    width: 5em;
-    height: 1.5em;
-    color:rgba(255,255,255,1);
-    border: none;
-    margin-top: 1em;
-    border-radius: 0.25em;
-}
-
-.btn-fltr{
-    padding: 0.5em;
-    width: 100vw;
-}
-.btn-fltr-task-m{
-    background-color: rgba(107,165,242,1);
-    width: 5em;
-    height: 1.7em;
-    color:rgba(255,255,255,1);
-    border: none;
-    border-radius: 0.25em;
-    margin-right: 0.5em;
-    font-size: 12px;
-}
-
-.btn-fltr-m-task-m{
-    background-color: rgba(163,157,157,1);
-    width: 7em;
-    height: 1.7em;
-    color:rgba(255,255,255,1);
-    border: none;
-    margin-right: 0.5em;
-    border-radius: 0.5em;
-    font-size: 12px;
-}
-
-.task-table-heading-m{
-    padding: 0.5em;
-    width: 100vw;
-}
-
-.task-table-heading-m h3{
-    text-align: left;
-    font-family: Montserrat;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 17px;
-    color: black
-}
-.table-m{
-    width: inherit;
-    height: 13em;
-    margin: 0.5em;
-    border: 1px solid rgba(13,101,217,1);
-    border-radius: 0.4em;
-    width: 90vw;
-    background-color: rgba(255,255,255,1);
-}
-
-.tab-row{
-width: 89.7vw;
-height: 2em;
-margin-top: 0.2em;
-align-items: center;
-background-color: rgba(255,255,255,1);
-border-bottom:1px solid rgba(163,157,157,1);
-}
-
-.tab-row input{
-    float: left;
-    height: 20px;
-    margin-left: 0.5em;
-    margin-top: 00.25em;
-}
-
-#bars-table{
-    float: right;
-    margin-top: 00.25em;
-}
-
-.tab-row-m{
-    width: 89.7vw;
-    height: 2em;
-    margin-top: 0.75em;
-    padding-left: 0.5em;
-    align-items: center;
-    background-color: rgba(255,255,255,1);
+    .header-user {
+        text-align: left;
+        font-family: Montserrat;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 22px;
+        color: rgba(13, 101, 217, 1);
     }
 
-.tab-row-lm{
-    width: 89.7vw;
-    height: 2.5em;
-    margin-top: 0.25em;
-    padding-top: 0.35em;
-    align-items: center;
-    padding-left: 0.5em;
-    background-color: rgba(255,255,255,1);
-    border-bottom:1px solid rgba(163,157,157,1);
-    border-top:1px solid rgba(163,157,157,1);
+    .header-p-task {
+        text-align: left;
+        font-family: Montserrat;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 12px;
+        color: rgba(163, 157, 157, 1);
     }
 
-    .tab-content-l{
-    text-align: left;
-    font-family: Montserrat;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 16px;
-    color: black
+    .header-p-task-count {
+        white-space: nowrap;
+        text-align: left;
+        font-family: Montserrat;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 12px;
+        color: black;
     }
 
-    .tab-content-r{
+    .task-head h3 {
+        text-align: left;
+        font-family: Montserrat;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 17px;
+        color: black
+    }
+
+    .task-head {
+        padding: 0.5em;
+        width: 100vw;
+    }
+
+    .add-task-m {
+        display: grid;
+        padding: 0.5em;
+        width: 100vw;
+    }
+
+    .textarea-m {
+        border: 1px solid rgba(13, 101, 217, 1);
+        border-radius: 0.4em;
+        width: 90vw;
+        height: 7em;
+    }
+
+    .textarea-m:focus {
+        border: 2px solid rgba(13, 101, 217, 1);
+        outline: none;
+
+    }
+
+    .btn-add-task-m {
+        background-color: rgba(107, 165, 242, 1);
+        width: 5em;
+        height: 1.5em;
+        color: rgba(255, 255, 255, 1);
+        border: none;
+        margin-top: 1em;
+        border-radius: 0.25em;
+    }
+
+    .btn-fltr {
+        padding: 0.5em;
+        width: 100vw;
+    }
+
+    .btn-fltr-task-m {
+        background-color: rgba(107, 165, 242, 1);
+        width: 5em;
+        height: 1.7em;
+        color: rgba(255, 255, 255, 1);
+        border: none;
+        border-radius: 0.25em;
+        margin-right: 0.5em;
+        font-size: 12px;
+    }
+
+    .btn-fltr-m-task-m {
+        background-color: rgba(163, 157, 157, 1);
+        width: 7em;
+        height: 1.7em;
+        color: rgba(255, 255, 255, 1);
+        border: none;
+        margin-right: 0.5em;
+        border-radius: 0.5em;
+        font-size: 12px;
+    }
+
+    .task-table-heading-m {
+        padding: 0.5em;
+        width: 100vw;
+    }
+
+    .task-table-heading-m h3 {
+        text-align: left;
+        font-family: Montserrat;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 17px;
+        color: black
+    }
+
+    .table-m {
+        width: inherit;
+        height: 13em;
+        margin: 0.5em;
+        border: 1px solid rgba(13, 101, 217, 1);
+        border-radius: 0.4em;
+        width: 90vw;
+        background-color: rgba(255, 255, 255, 1);
+    }
+
+    .tab-row {
+        width: 89.7vw;
+        height: 2em;
+        margin-top: 0.2em;
+        align-items: center;
+        background-color: rgba(255, 255, 255, 1);
+        border-bottom: 1px solid rgba(163, 157, 157, 1);
+    }
+
+    .tab-row input {
+        float: left;
+        height: 20px;
+        margin-left: 0.5em;
+        margin-top: 00.25em;
+    }
+
+    #bars-table {
+        float: right;
+        margin-top: 00.25em;
+    }
+
+    .tab-row-m {
+        width: 89.7vw;
+        height: 2em;
+        margin-top: 0.75em;
+        padding-left: 0.5em;
+        align-items: center;
+        background-color: rgba(255, 255, 255, 1);
+    }
+
+    .tab-row-lm {
+        width: 89.7vw;
+        height: 2.5em;
+        margin-top: 0.25em;
+        padding-top: 0.35em;
+        align-items: center;
+        padding-left: 0.5em;
+        background-color: rgba(255, 255, 255, 1);
+        border-bottom: 1px solid rgba(163, 157, 157, 1);
+        border-top: 1px solid rgba(163, 157, 157, 1);
+    }
+
+    .tab-content-l {
+        text-align: left;
+        font-family: Montserrat;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 16px;
+        color: black
+    }
+
+    .tab-content-r {
         padding-right: 0.5em;
         float: right;
         font-family: Montserrat;
@@ -528,49 +567,52 @@ border-bottom:1px solid rgba(163,157,157,1);
         font-weight: bold;
         font-size: 16px;
         color: black
-        }
-#task-icon-l{
-    color:rgb(101, 148, 209);
-      cursor: pointer;
-      padding-top: 0.6em;
-      padding-left: 15vw;
-}
-#task-icon-r{
-    padding-top: 0.6em;
-    float: right;
-    padding-right: 15vw;
-    color:rgb(101, 148, 209);
-    cursor: pointer;
-}
-}
-@media (max-width:410px){
-.tab-row-lm{
-    width: 89.5vw;
-    height: 2.5em;
-    margin-top: 0.25em;
-    padding-top: 0.35em;
-    align-items: center;
-    padding-left: 0.5em;
-    background-color: rgba(255,255,255,1);
-    border-bottom:1px solid rgba(163,157,157,1);
-    border-top:1px solid rgba(163,157,157,1);
     }
 
-    .tab-row-m{
+    #task-icon-l {
+        color: rgb(101, 148, 209);
+        cursor: pointer;
+        padding-top: 0.6em;
+        padding-left: 15vw;
+    }
+
+    #task-icon-r {
+        padding-top: 0.6em;
+        float: right;
+        padding-right: 15vw;
+        color: rgb(101, 148, 209);
+        cursor: pointer;
+    }
+}
+
+@media (max-width: 410px) {
+    .tab-row-lm {
+        width: 89.5vw;
+        height: 2.5em;
+        margin-top: 0.25em;
+        padding-top: 0.35em;
+        align-items: center;
+        padding-left: 0.5em;
+        background-color: rgba(255, 255, 255, 1);
+        border-bottom: 1px solid rgba(163, 157, 157, 1);
+        border-top: 1px solid rgba(163, 157, 157, 1);
+    }
+
+    .tab-row-m {
         width: 89.5vw;
         height: 2em;
         margin-top: 0.75em;
         padding-left: 0.5em;
         align-items: center;
-        background-color: rgba(255,255,255,1);
-        }
+        background-color: rgba(255, 255, 255, 1);
+    }
 
-        .tab-row{
-            width: 89.5vw;
-            height: 2em;
-            margin-top: 0.2em;
-            align-items: center;
-            background-color: rgba(255,255,255,1);
-            border-bottom:1px solid rgba(163,157,157,1);
-            }
+    .tab-row {
+        width: 89.5vw;
+        height: 2em;
+        margin-top: 0.2em;
+        align-items: center;
+        background-color: rgba(255, 255, 255, 1);
+        border-bottom: 1px solid rgba(163, 157, 157, 1);
+    }
 }

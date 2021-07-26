@@ -20,12 +20,12 @@
 }
 
 .ul-icons{
+    list-style-type: none;
     margin-left: -0.5em;
 }
 
 li{
     padding: 1rem;
-    
     color: rgba(148,189,242,1);
     font-weight: 300;
 }

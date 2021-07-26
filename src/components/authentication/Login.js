@@ -1,9 +1,9 @@
-import { useState } from "react";
+import {useState} from "react";
 import axios from 'axios'
 import './Login.css'
 import loginImg from '../../images/login.svg'
 import signupImg from '../../images/signup.svg'
-import { useHistory } from "react-router";
+import {useHistory} from "react-router";
 import BounceLoader from "react-spinners/ClipLoader";
 import LoadingOverlay from 'react-loading-overlay'
 
@@ -45,38 +45,33 @@ function Login() {
         }
 
         if (loginObject.email === '') {
-            setloginObject({ ...loginObject, login_email: 'error-input-field' })
-        }
-        else if (loginObject.password === '') {
-            setloginObject({ ...loginObject, login_password: 'error-input-field' })
-        }
-        else {
+            setloginObject({...loginObject, login_email: 'error-input-field'})
+        } else if (loginObject.password === '') {
+            setloginObject({...loginObject, login_password: 'error-input-field'})
+        } else {
             setIsLoading(true)
             axios.post('/users/login', login_parameter)
                 .then(response => {
-                    console.log(response);
                     setIsLoading(false)
                     let state_value = response.status
                     if (state_value === 200) {
                         setIsLoading(false)
-                        localStorage.setItem('username', response.data.user.email)
                         localStorage.setItem('token', response.data.token)
-                        history.push('/dashboard');
+                        localStorage.setItem("user_id", response.data.user._id)
+                        history.push('/task');
                     }
-                    localStorage.setItem("access-token", response.data);
                 }).catch(error => {
                     if (!error.response) {
                         setIsLoading(false)
                         history.push('/auth/error');
-                    }
-                    else {
+                    } else {
                         setIsLoading(false)
                         let state_value = error.response.status
                         if (state_value === 503 || 400)
-                            setloginObject({ ...loginObject, error_field: 'error-field-show' })
+                            setloginObject({...loginObject, error_field: 'error-field-show'})
                     }
                 }
-                );
+            );
         }
 
     }
@@ -92,15 +87,12 @@ function Login() {
         }
 
         if (signUpObject.username === '') {
-            setSignUpObject({ ...signUpObject, signup_username: 'error-input-field' })
-        }
-        else if (signUpObject.email === '') {
-            setSignUpObject({ ...signUpObject, signup_email: 'error-input-field' })
-        }
-        else if (signUpObject.password === '') {
-            setSignUpObject({ ...signUpObject, signup_password: 'error-input-field' })
-        }
-        else {
+            setSignUpObject({...signUpObject, signup_username: 'error-input-field'})
+        } else if (signUpObject.email === '') {
+            setSignUpObject({...signUpObject, signup_email: 'error-input-field'})
+        } else if (signUpObject.password === '') {
+            setSignUpObject({...signUpObject, signup_password: 'error-input-field'})
+        } else {
             setIsLoading(true)
             axios.post('/users', signup_parameter)
                 .then(response => {
@@ -109,23 +101,22 @@ function Login() {
                     if (state_value === 201) {
                         setIsLoading(false)
                         localStorage.setItem('token', response.data.token)
+                        localStorage.setItem("user_id", response.data._id)
                         alert("Sign up is successful!")
-                        history.push('/dashboard');
+                        history.push('/task');
                     }
-                    localStorage.setItem("access-token", response.data);
                 }).catch(error => {
                     if (!error.response) {
                         setIsLoading(false)
                         history.push('/auth/error');
-                    }
-                    else {
+                    } else {
                         setIsLoading(false)
                         let state_value = error.response.status
                         if (state_value === 503 || 400)
-                            setloginObject({ ...loginObject, error_field: 'error-field-show' })
+                            setloginObject({...loginObject, error_field: 'error-field-show'})
                     }
                 }
-                )
+            )
         }
 
     }
@@ -140,7 +131,7 @@ function Login() {
 
     return <LoadingOverlay
         active={isLoading}
-        spinner={<BounceLoader />}>
+        spinner={<BounceLoader/>}>
 
         <div className={className}>
             <div className="form-container">
@@ -153,19 +144,19 @@ function Login() {
                         <div className={loginObject.login_email}>
                             <i className="fas fa-user"></i>
                             <input type="email" placeholder="Email" value={loginObject.email}
-                                onChange={event => setloginObject({
-                                    ...loginObject, email: event.target.value,
-                                    login_email: 'input-field', error_field: 'error-field-hide'
-                                })}
+                                   onChange={event => setloginObject({
+                                       ...loginObject, email: event.target.value,
+                                       login_email: 'input-field', error_field: 'error-field-hide'
+                                   })}
                             ></input>
                         </div>
                         <div className={loginObject.login_password}>
                             <i className="fas fa-lock"></i>
                             <input type="password" placeholder="Password" value={loginObject.password}
-                                onChange={event => setloginObject({
-                                    ...loginObject, password: event.target.value,
-                                    login_password: 'input-field', error_field: 'error-field-hide'
-                                })}
+                                   onChange={event => setloginObject({
+                                       ...loginObject, password: event.target.value,
+                                       login_password: 'input-field', error_field: 'error-field-hide'
+                                   })}
                             ></input>
                         </div>
                         <div className={loginObject.error_field}>
@@ -197,28 +188,28 @@ function Login() {
                         <div className={signUpObject.signup_username}>
                             <i className="fas fa-user"></i>
                             <input type="text" placeholder="Username" value={signUpObject.username}
-                                onChange={event => setSignUpObject({
-                                    ...signUpObject, username: event.target.value,
-                                    signup_username: 'input-field', error_field: 'error-field-hide'
-                                })}
+                                   onChange={event => setSignUpObject({
+                                       ...signUpObject, username: event.target.value,
+                                       signup_username: 'input-field', error_field: 'error-field-hide'
+                                   })}
                             ></input>
                         </div>
                         <div className={signUpObject.signup_email}>
                             <i className="fas fa-envelope"></i>
                             <input type="text" placeholder="Email" value={signUpObject.email}
-                                onChange={event => setSignUpObject({
-                                    ...signUpObject, email: event.target.value,
-                                    signup_email: 'input-field', error_field: 'error-field-hide'
-                                })}
+                                   onChange={event => setSignUpObject({
+                                       ...signUpObject, email: event.target.value,
+                                       signup_email: 'input-field', error_field: 'error-field-hide'
+                                   })}
                             ></input>
                         </div>
                         <div className={signUpObject.signup_password}>
                             <i className="fas fa-lock"></i>
                             <input type="password" placeholder="Password" value={signUpObject.password}
-                                onChange={event => setSignUpObject({
-                                    ...signUpObject, password: event.target.value,
-                                    signup_password: 'input-field', error_field: 'error-field-hide'
-                                })}
+                                   onChange = {event => setSignUpObject({
+                                       ...signUpObject, password: event.target.value,
+                                       signup_password: 'input-field', error_field: 'error-field-hide'
+                                   })}
                             ></input>
                         </div>
                         <div className={signUpObject.error_field}>
@@ -255,18 +246,19 @@ function Login() {
 
                     </div>
 
-                    <img src={loginImg} className="images" alt="some text" />
+                    <img src={loginImg} className="images" alt="some text"/>
                 </div>
 
                 <div className="panel right-panel">
                     <div className="content">
                         <h3>One of us?</h3>
                         <p>Sign in to get into a larger and awesome web application!</p>
-                        <button className="btns transparent" id="sign-in-btn" onClick={removeSignUpMode}>Sign in</button>
+                        <button className="btns transparent" id="sign-in-btn" onClick={removeSignUpMode}>Sign in
+                        </button>
 
                     </div>
 
-                    <img src={signupImg} className="images" alt="some text" />
+                    <img src={signupImg} className="images" alt="some text"/>
                 </div>
             </div>
         </div>
