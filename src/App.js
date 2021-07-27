@@ -9,6 +9,7 @@ function App() {
       <Router>
         <Switch>
           <Route exact strict path="/login" component={Login} />
+          <Route exact strict path="/" component={Login} />
           <Route exact strict path="/task" component={Task} />
         </Switch>
       </Router>

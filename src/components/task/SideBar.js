@@ -2,7 +2,7 @@ import './SideBar.css'
 import axios from "axios";
 import {useHistory} from "react-router";
 
-function SideBar() {
+function SideBar(props) {
 
     const history = useHistory();
 
@@ -22,6 +22,7 @@ function SideBar() {
 
     return (
         <div className="sidebar">
+            <i class="fas fa-angle-double-left" id="icon-back"></i>
             <div className="header-logo">
                 <i className="fab fa-joomla"></i>
                 LOGO

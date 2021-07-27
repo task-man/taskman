@@ -120,6 +120,7 @@ body {
     height: 70%;
     overflow: auto;
     box-sizing: border-box;
+    color:rgba(107, 165, 242, 1)
 }
 
 .textarea:focus {
@@ -137,6 +138,11 @@ body {
     margin-top: 1em;
     border-radius: 0.5em;
 }
+
+div[id^="rdw-wrapper-"] {
+    padding: 0.25em;
+    
+  }
 
 .textarea {
     border: none;
@@ -228,6 +234,16 @@ body {
     border-radius: 0.5em;
 }
 
+.dropdown-task::selection {
+    background-color: rgb(255, 255, 255);
+    width: 9em;
+    height: 2.2em;
+    color: rgb(110, 106, 106);
+    border: 1px solid rgb(32, 119, 233);
+    margin-right: 0.5em;
+    border-radius: 0.5em;
+}
+
 .task-table-div {
     margin-top: 1em;
     padding: 1em;
@@ -291,13 +307,6 @@ body {
     color: rgba(163, 157, 157, 1);
 }
 
-.progress-bar-in-progress:focus {
-    display: none;
-}
-
-.progress-bar-completed:focus {
-    display: none;
-}
 
 .progress-bar-in-progress {
     background: rgba(235, 28, 35, 1);
@@ -312,6 +321,64 @@ body {
     height: 0.4em;
     width: 10em;
 }
+
+.bar-comp{
+    background: rgb(234, 238, 238) ;
+    border-radius: 2em;
+    height: 0.4em;
+    width: 14em;
+    margin-top: 0.5em;
+}
+
+.bar-comp span{
+    height: 0.4em;
+    float: left;
+    background: rgba(13, 101, 217, 1);
+}
+
+.bar-inpr{
+    background: rgb(234, 238, 238) ;
+    border-radius: 2em;
+    height: 0.4em;
+    width: 14em;
+    margin-top: 0.5em;
+}
+
+.bar-inpr span{
+    height: 0.4em;
+    float: left;
+    background: red;
+}
+
+
+.bar-progress-comp{
+    
+    animation: bar-progress-comp 2s;
+}
+
+@keyframes bar-progress-comp{
+    0%{
+        width: 0%;
+    }
+    100%{
+        width: 100%;
+    }
+}
+
+.bar-progress-inpr{
+    
+    animation: bar-progress-inpr 2s;
+}
+
+@keyframes bar-progress-inpr{
+    0%{
+        width: 0%;
+    }
+    100%{
+        width: 100%;
+    }
+}
+
 
 .circle {
     position: relative;
@@ -332,7 +399,7 @@ body {
     margin-top: 4em;
     border-radius: 100%;
     background-color: #E53B3B;
-    background-image: linear-gradient(162deg, transparent 50%, rgba(13, 101, 217, 1) 50%), linear-gradient(90deg, rgba(13, 101, 217, 1) 50%, transparent 50%);
+    background-image: linear-gradient(182deg, transparent 50%, rgba(13, 101, 217, 1) 50%), linear-gradient(90deg, rgba(13, 101, 217, 1) 50%, transparent 50%);
 }
 
 .progress-task-right {
@@ -431,8 +498,14 @@ body {
     .add-task-m {
         display: grid;
         padding: 0.5em;
-        width: 100vw;
+        width: 95vw;
+        
     }
+
+    div[id^="rdw-wrapper-"] {
+        padding: 0.25em;
+        background:rgba(255, 255, 255, 1);
+      }
 
     .textarea-m {
         border: 1px solid rgba(13, 101, 217, 1);
@@ -453,7 +526,19 @@ body {
         height: 1.5em;
         color: rgba(255, 255, 255, 1);
         border: none;
+        font-size: 15px;
         margin-top: 1em;
+        border-radius: 0.25em;
+    }
+
+    .btn-edit-task-m{
+        background-color: rgba(107, 165, 242, 1);
+        width: 7em;
+        height: 1.5em;
+        color: rgba(255, 255, 255, 1);
+        border: none;
+        margin-top: 1em;
+        font-size: 15px;
         border-radius: 0.25em;
     }
 
@@ -555,7 +640,7 @@ body {
         font-family: Montserrat;
         font-style: normal;
         font-weight: bold;
-        font-size: 16px;
+        font-size: 13px;
         color: black
     }
 
@@ -565,7 +650,7 @@ body {
         font-family: Montserrat;
         font-style: normal;
         font-weight: bold;
-        font-size: 16px;
+        font-size: 13px;
         color: black
     }
 

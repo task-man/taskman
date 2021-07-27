@@ -1,7 +1,7 @@
 .sidebar {
     background-color: rgba(13, 101, 217, 1);
     width: 15em;
-    height: 52em;
+    height: 88vh;
     border-bottom-right-radius: 1em;
     border-top-right-radius: 1em;
 }
@@ -70,7 +70,7 @@ li:hover
 }
 
 .sidebar-footer{
-    margin-top: 23.5em;
+    margin-top: 40vh;
     
 }
 
@@ -87,8 +87,92 @@ a:hover{
     text-decoration: none;
 }
 
-@media (max-width:1100px){
+#icon-back{
+    display: none;
+}
+
+@media (max-width:1500px){
     .sidebar {
-       display: none;
+        height: 85vh;
+        width: 55vw;
+        z-index: 1;
+        position: fixed;
     }
+    #icon-back{
+        color: white;
+        float: right;
+        font-size: 25px;
+    }
+    #icon-back:focus{
+        cursor: pointer;
+    }
+
+    .header-logo {
+        
+        margin-top: 0em;
+        
+    }
+
+    
+.ul-icons{
+    list-style-type: none;
+    margin-left: -0.25em;
+}
+
+li{
+    padding: 1rem;
+    color: rgba(148,189,242,1);
+    font-weight: 200;
+}
+
+i{
+    padding-right: 0.5em;
+}
+
+li:hover
+{
+    color: rgba(255, 255, 255, 1);
+    cursor: pointer;
+}
+
+.button-logout
+{
+    margin-left: 1em;
+    color: rgba(148,189,242,1);
+    background: none;
+}
+
+.button-logout:hover
+{
+    color: rgba(255, 255, 255, 1);
+    cursor: pointer;
+}
+
+
+.horizontal-line
+{
+    width: 8em;
+    margin-left: 0.75em;
+    border: 1px solid rgba(148,189,242,1);
+}
+
+.sidebar-footer-text
+{
+    display:block;
+    font-size: 0.8em;
+    color: rgba(148,189,242,1);
+    margin-left: 1em;
+}
+
+.sidebar-footer{
+    
+    margin-top: 19vh;
+}
+
+a{
+    padding: 0.5em;
+    color:rgba(255, 255, 255, 1);
+    text-decoration: none;
+}
+
 }
