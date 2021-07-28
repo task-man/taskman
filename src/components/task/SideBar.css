@@ -24,17 +24,27 @@
     margin-left: -0.5em;
 }
 
-li{
+
+.list{
     padding: 1rem;
     color: rgba(148,189,242,1);
-    font-weight: 300;
+    font-weight: 200;
+    cursor: pointer;
+}
+
+.list-active{
+    padding: 1rem;
+    color: rgba(255, 255, 255, 1);
+    font-weight: 200;
+    cursor: pointer;
+    
 }
 
 i{
     padding-right: 1em;
 }
 
-li:hover
+.list:hover
 {
     color: rgba(255, 255, 255, 1);
     cursor: pointer;
@@ -93,10 +103,11 @@ a:hover{
     }
 }
 
+
 @media (max-width:1200px){
     .sidebar {
-        height: 85vh;
-        width: 55vw;
+        height: auto;
+        width: 14em;
         z-index: 1;
         position: fixed;
     }
@@ -104,6 +115,7 @@ a:hover{
         color: white;
         float: right;
         font-size: 25px;
+        cursor: pointer;
     }
     #icon-back:focus{
         cursor: pointer;
@@ -121,9 +133,15 @@ a:hover{
     margin-left: -0.25em;
 }
 
-li{
+.list{
     padding: 1rem;
     color: rgba(148,189,242,1);
+    font-weight: 200;
+}
+
+.list-active{
+    padding: 1rem;
+    color: rgba(255, 255, 255, 1);
     font-weight: 200;
 }
 
@@ -131,7 +149,7 @@ i{
     padding-right: 0.5em;
 }
 
-li:hover
+.list:hover
 {
     color: rgba(255, 255, 255, 1);
     cursor: pointer;
@@ -168,11 +186,13 @@ li:hover
 
 .sidebar-footer{
     
-    margin-top: 19vh;
+    margin-top: 17vh;
+    margin-bottom: 0.5em;
 }
 
 a{
     padding: 0.5em;
+    
     color:rgba(255, 255, 255, 1);
     text-decoration: none;
 }

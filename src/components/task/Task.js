@@ -41,7 +41,7 @@ function Task() {
     const [editTask, seteditTask] = useState(edit_Task);
     const [pagination, setPagination] = useState(Pagination);
     const [taskCount, settaskCount] = useState(taskStatus);
-    const [sideBar, setsideBar] = useState(false);
+    const [sideBar, setsideBar] = useState('block');
 
 
     const history = useHistory();
@@ -57,7 +57,7 @@ function Task() {
     useEffect(() => {
         calculate();
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [incomplete,complete])
+    }, [incomplete, complete])
 
     async function get_task_lists() {
         if (token) {
@@ -138,7 +138,7 @@ function Task() {
                     get_task_lists()
                     seteditTask({ ...editTask, edit_Task: false })
                 })
-            
+
         }
         else {
             history.push('/login');
@@ -162,7 +162,12 @@ function Task() {
     }
 
     const handleSideBar = () => {
-        setsideBar(true)
+        if (sideBar === 'none') {
+            setsideBar('block')
+        }
+        else{
+            setsideBar('none')
+        }
     }
 
     return (
@@ -208,12 +213,12 @@ function Task() {
                                 <div className="progress-task-left">
                                     <h3>Progress Task</h3>
                                     <label style={{ paddingTop: "3em" }}>Done</label>
-                                    <label style={{ float:"right", paddingTop: "3em" }}>{complete * 100 / tasks.length}%</label><br />
+                                    <label style={{ float: "right", paddingTop: "3em" }}>{complete * 100 / tasks.length}%</label><br />
                                     <div className="bar-comp"><span className="bar-progress-comp" style={{
                                         width: taskCount.taskCompleted
                                     }}></span></div><br />
                                     <label style={{ paddingTop: "2em" }}>In Progress</label>
-                                    <label style={{ float:"right", paddingTop: "2em"  }}>{incomplete * 100 / tasks.length}%</label><br />
+                                    <label style={{ float: "right", paddingTop: "2em" }}>{incomplete * 100 / tasks.length}%</label><br />
                                     <div className="bar-inpr" ><span className="bar-progress-inpr" style={{
                                         width: taskCount.taskInprogress
                                     }}></span></div>
@@ -262,7 +267,7 @@ function Task() {
                                     </tr>
                                     {
                                         tasks.map(
-                                            
+
                                             task => <tr key={task._id}>
 
                                                 <td>{Parser(task.description)}</td>
@@ -284,7 +289,7 @@ function Task() {
             </div>
 
             <div id="Screen_mobile">
-                {sideBar ? <SideBar /> : null}
+                {sideBar ? <SideBar display={sideBar} /> : null}
                 <div className="header-top">
                     <i className="fas fa-bars" id="bars" onClick={handleSideBar}></i>
                     <img src={ProfileImg} className="image" alt="some text" />

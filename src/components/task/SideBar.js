@@ -1,10 +1,26 @@
 import './SideBar.css'
 import axios from "axios";
 import {useHistory} from "react-router";
+import { useState,useEffect } from "react";
+
+const active_state = {
+    taskActive: 'list-active',
+    statActive: 'list',
+    notifyActive: 'list',
+    settingsActive: 'list'
+}
 
 function SideBar(props) {
 
     const history = useHistory();
+
+    const [active, setActive] = useState(active_state);
+    const [display, setDisplay] = useState('none');
+
+    useEffect(() => {
+        setDisplay(props.display)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [props.display])
 
     // For logout
     const handleLogout = () => {
@@ -20,27 +36,41 @@ function SideBar(props) {
         }
     }
 
+    const handleTaskActive = () => {
+        history.push('/task')
+       if(active.taskActive === 'list'){
+           setActive({...setActive, taskActive:'list-active', statActive:'list', notifyActive:'list', settingsActive:'list'})
+       }
+       else{
+        setActive({...setActive, taskActive:'list', statActive:'list', notifyActive:'list', settingsActive:'list'})
+       }
+    }
+
+    const handleSidebarDisplay = () => {
+        setDisplay('none')
+    }
+
     return (
-        <div className="sidebar">
-            <i class="fas fa-angle-double-left" id="icon-back"></i>
+        <div className="sidebar" style={{display:display}}>
+            <i class="fas fa-angle-double-left" id="icon-back" onClick={handleSidebarDisplay}></i>
             <div className="header-logo">
                 <i className="fab fa-joomla"></i>
                 LOGO
             </div>
             <ul className="ul-icons">
-                <li>
+                <li className={active.taskActive} onClick={handleTaskActive}>
                     <i className="fas fa-tasks"></i>
                     Tasks
                 </li>
-                <li>
+                <li className={active.statActive}>
                     <i className="fas fa-chart-line"></i>
                     Statistics
                 </li>
-                <li>
+                <li className={active.notifyActive}>
                     <i className="fas fa-bell"></i>
                     Notifications
                 </li>
-                <li>
+                <li className={active.settingsActive}>
                     <i className="fas fa-cog"></i>
                     Settings
                 </li>
