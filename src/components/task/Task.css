@@ -23,8 +23,8 @@ body {
 }
 
 .image {
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
     top: 0px;
     margin-right: 2rem;
     margin-top: 0.25em;
@@ -42,7 +42,7 @@ body {
     font-family: Montserrat;
     font-style: normal;
     font-weight: bold;
-    font-size: 25px;
+    font-size: 22px;
     color: rgba(13, 101, 217, 1);
 }
 
@@ -51,7 +51,7 @@ body {
     font-family: Montserrat;
     font-style: normal;
     font-weight: bold;
-    font-size: 12px;
+    font-size: 10px;
     color: rgba(163, 157, 157, 1);
 }
 
@@ -61,14 +61,14 @@ body {
     font-family: Montserrat;
     font-style: normal;
     font-weight: bold;
-    font-size: 12px;
+    font-size: 10px;
     color: black;
 }
 
 .header-search {
     padding: 0.5rem;
-    width: 280px;
-    height: 40px;
+    width: 240px;
+    height: 30px;
     background: rgba(209, 210, 212, 1);
     border-radius: 0.2rem;
     margin-right: 3rem;
@@ -79,7 +79,7 @@ body {
     margin-right: 3rem;
     margin-top: 20px;
     text-align: center;
-    font-size: 2.1rem;
+    font-size:26px;
     cursor: pointer;
 }
 
@@ -117,7 +117,7 @@ body {
 
 
 .textarea.rdw-editor-main {
-    height: 70%;
+    height: 50%;
     overflow: auto;
     box-sizing: border-box;
     color:rgba(107, 165, 242, 1)
@@ -131,8 +131,8 @@ body {
 
 .btn-add-task {
     background-color: rgba(107, 165, 242, 1);
-    width: 10em;
-    height: 2.5em;
+    width: 8em;
+    height: 2em;
     color: rgba(255, 255, 255, 1);
     border: none;
     margin-top: 1em;
@@ -158,7 +158,7 @@ div[id^="rdw-wrapper-"] {
     border: 1px solid rgba(13, 101, 217, 1);
     border-radius: 0.4em;
     width: 35em;
-    height: 17em;
+    height: 14em;
     padding: 0.75em;
     margin-left: 6vw;
     display: inline-flex;
@@ -169,7 +169,7 @@ div[id^="rdw-wrapper-"] {
     font-family: Montserrat;
     font-style: normal;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 16px;
     color: black
 }
 
@@ -257,7 +257,7 @@ div[id^="rdw-wrapper-"] {
     font-family: Montserrat;
     font-style: normal;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 15px;
     color: black
 }
 
@@ -269,11 +269,11 @@ div[id^="rdw-wrapper-"] {
     border-bottom: none;
     padding-left: 1em;
     padding-right: 7em;
-    padding-top: 1.2em;
-    padding-bottom: 1.2em;
+    padding-top: 1em;
+    padding-bottom: 1em;
     text-align: left;
     font-family: Montserrat;
-    font-size: 18px;
+    font-size: 14px;
     color: black
 }
 
@@ -303,7 +303,7 @@ div[id^="rdw-wrapper-"] {
     font-family: Montserrat;
     font-style: normal;
     font-weight: bold;
-    font-size: 12px;
+    font-size: 10px;
     color: rgba(163, 157, 157, 1);
 }
 
@@ -406,7 +406,7 @@ div[id^="rdw-wrapper-"] {
     padding-left: 5em;
 }
 
-@media (max-width: 1500px) {
+@media (max-width: 1200px) {
     #Screen_main {
         display: none;
     }
@@ -421,7 +421,7 @@ div[id^="rdw-wrapper-"] {
     }
 
     .header-top i {
-        font-size: 1.5rem;
+        font-size: 1.0rem;
         cursor: pointer;
 
     }
@@ -511,7 +511,7 @@ div[id^="rdw-wrapper-"] {
         border: 1px solid rgba(13, 101, 217, 1);
         border-radius: 0.4em;
         width: 90vw;
-        height: 7em;
+        height: 0em;
     }
 
     .textarea-m:focus {

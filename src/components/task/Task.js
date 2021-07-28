@@ -50,13 +50,18 @@ function Task() {
 
     useEffect(() => {
         get_task_lists();
-        calculate()
+        //window.document.get
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-    const get_task_lists = () => {
+    useEffect(() => {
+        calculate();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [incomplete,complete])
+
+    async function get_task_lists() {
         if (token) {
-            axios.get('/tasks?sortBy=createdAt:' + pagination.orderBy, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
+            await axios.get('/tasks?sortBy=createdAt:' + pagination.orderBy, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
                 .then(response => {
                     setTasks(response.data)
                     setIncomplete(0)
@@ -68,7 +73,6 @@ function Task() {
                             setcomplete(count => count + 1)
                         }
                     })
-
                 })
 
         } else {
@@ -76,30 +80,14 @@ function Task() {
         }
     }
 
-    const  calculate = () => {
-
-        let incomplete;
-        let complete;
-
-        tasks.forEach((task) => {
-            if (task.completed === false) {
-               incomplete += 1
-            }
-            else if (task.completed === true) {
-               complete += 1
-            }
-        })
-
-        console.log(incomplete)
-        const incompleteTask = (incomplete * 100 / tasks.length);
+    function calculate() {
+        const incompleteTask = (incomplete * 100 / tasks.length)
 
         const completeTask =
             complete * 100 / tasks.length;
 
         settaskCount({ ...taskCount, taskCompleted: completeTask + "%", taskInprogress: incompleteTask + "%" })
-        console.log(taskCount.taskCompleted, taskCount.taskInprogress, incomplete, complete)
     }
-
 
     const handleAddTask = () => {
         const value = draftToHtml(convertToRaw(editorState.getCurrentContent()))
@@ -150,6 +138,7 @@ function Task() {
                     get_task_lists()
                     seteditTask({ ...editTask, edit_Task: false })
                 })
+            
         }
         else {
             history.push('/login');
@@ -218,11 +207,13 @@ function Task() {
                             <div className="progress-task">
                                 <div className="progress-task-left">
                                     <h3>Progress Task</h3>
-                                    <label style={{ paddingTop: "3em" }}>Done</label><br />
+                                    <label style={{ paddingTop: "3em" }}>Done</label>
+                                    <label style={{ float:"right", paddingTop: "3em" }}>{complete * 100 / tasks.length}%</label><br />
                                     <div className="bar-comp"><span className="bar-progress-comp" style={{
                                         width: taskCount.taskCompleted
                                     }}></span></div><br />
-                                    <label style={{ paddingTop: "2em" }}>In Progress</label><br />
+                                    <label style={{ paddingTop: "2em" }}>In Progress</label>
+                                    <label style={{ float:"right", paddingTop: "2em"  }}>{incomplete * 100 / tasks.length}%</label><br />
                                     <div className="bar-inpr" ><span className="bar-progress-inpr" style={{
                                         width: taskCount.taskInprogress
                                     }}></span></div>
@@ -271,6 +262,7 @@ function Task() {
                                     </tr>
                                     {
                                         tasks.map(
+                                            
                                             task => <tr key={task._id}>
 
                                                 <td>{Parser(task.description)}</td>

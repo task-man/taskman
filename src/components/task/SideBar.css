@@ -70,7 +70,7 @@ li:hover
 }
 
 .sidebar-footer{
-    margin-top: 40vh;
+    margin-top: 25vh;
     
 }
 
@@ -87,11 +87,13 @@ a:hover{
     text-decoration: none;
 }
 
-#icon-back{
-    display: none;
+@media (min-width:1200px){
+    #icon-back{
+        display: none;
+    }
 }
 
-@media (max-width:1500px){
+@media (max-width:1200px){
     .sidebar {
         height: 85vh;
         width: 55vw;
