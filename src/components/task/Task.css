@@ -553,10 +553,12 @@ div[id^="rdw-wrapper-"] {
       }
 
     .textarea-m {
+        padding: 0.5em;
         border: 1px solid rgba(13, 101, 217, 1);
         border-radius: 0.4em;
+        height: 10em;
         width: 90vw;
-        height: 0em;
+        color:rgb(68, 70, 72)
     }
 
     .textarea-m:focus {
@@ -564,7 +566,20 @@ div[id^="rdw-wrapper-"] {
         outline: none;
 
     }
-
+    
+    .textarea-m-error{
+        padding: 0.5em;
+        border: 2px solid red;
+        border-radius: 0.4em;
+        height: 11em;
+        width: 90vw;
+        color:rgb(68, 70, 72)
+    }
+    
+    .textarea-m-error:focus {
+        border: 2px solid red;
+        outline: none;
+    }
     .btn-add-task-m {
         background-color: rgba(107, 165, 242, 1);
         width: 5em;

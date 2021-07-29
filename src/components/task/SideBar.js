@@ -10,12 +10,11 @@ const active_state = {
     settingsActive: 'list'
 }
 
-function SideBar() {
+function SideBar(props) {
 
     const history = useHistory();
 
     const [active, setActive] = useState(active_state);
-    const [sideBar, setsideBar] = useState(false);
 
     // For logout
     const handleLogout = () => {
@@ -41,22 +40,9 @@ function SideBar() {
        }
     }
 
-    const handleSideBar = () => {
-
-        console.log(sideBar)
-
-        if (sideBar === true) {
-            setsideBar(false)
-        }
-        else {
-            setsideBar(true)
-        }
-    }
-
-
     return (
         <div className="sidebar">
-            <i class="fas fa-angle-double-left" id="icon-back" onClick={handleSideBar}></i>
+            <i class="fas fa-angle-double-left" id="icon-back" onClick={props.handleSideBar}></i>
             <div className="header-logo">
                 <i className="fab fa-joomla"></i>
                 LOGO

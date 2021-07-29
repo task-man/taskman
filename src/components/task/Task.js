@@ -7,7 +7,8 @@ import axios from 'axios'
 import moment from "moment";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import Parser from 'html-react-parser';
-
+import BounceLoader from "react-spinners/ClipLoader";
+import LoadingOverlay from 'react-loading-overlay'
 
 
 const task_state = {
@@ -17,12 +18,14 @@ const task_state = {
     id: '',
     description: '',
     complete: false,
-    error: 'textarea'
+    error: 'textarea',
+    errorM: 'textarea-m'
 }
 
 const taskStatus = {
     taskCompleted: '',
-    taskInprogress: ''
+    taskInprogress: '',
+    taskInprogressC: '',
 }
 
 function Task() {
@@ -33,6 +36,7 @@ function Task() {
     const [taskState, settaskState] = useState(task_state);
     const [taskCount, settaskCount] = useState(taskStatus);
     const [sideBar, setsideBar] = useState(false);
+    const [isLoading, setIsLoading] = useState(false)
 
 
     const history = useHistory();
@@ -48,12 +52,14 @@ function Task() {
     useEffect(() => {
         calculate();
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [incomplete, complete])
+    }, [incomplete, complete, taskState])
 
     async function get_task_lists() {
         if (token) {
+            //setIsLoading(true)
             await axios.get('/tasks?sortBy=createdAt:asc', { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
                 .then(response => {
+                    // setIsLoading(false)
                     setTasks(response.data)
                     setIncomplete(0)
                     response.data.forEach((task) => {
@@ -74,21 +80,32 @@ function Task() {
     function calculate() {
         const incompleteTask = (incomplete * 100 / tasks.length)
 
+        const incompleteTaskC = ()=>  {
+            if(incomplete > 0) {
+                return (((incomplete * 100 / tasks.length) / 100) * 360)
+            }
+            else{
+                return "NaN"
+            }
+        }
+
         const completeTask =
             complete * 100 / tasks.length;
 
-        settaskCount({ ...taskCount, taskCompleted: completeTask + "%", taskInprogress: incompleteTask + "%" })
+        settaskCount({ ...taskCount, taskCompleted: completeTask, taskInprogress: incompleteTask, taskInprogressC: incompleteTaskC() })
     }
 
     const handleAddTask = () => {
 
         if (token) {
             if (taskState.description === '') {
-                settaskState({ ...taskState, error: 'textarea-error' })
+                settaskState({ ...taskState, error: 'textarea-error', errorM: 'textarea-m-error' })
             } else {
+                setIsLoading(true)
                 axios.post('/tasks', { description: taskState.description }, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
                     .then(response => {
-                        settaskState({ ...taskState, description:'' })
+                        setIsLoading(false)
+                        settaskState({ ...taskState, description: '' })
                         get_task_lists()
                     })
             }
@@ -99,16 +116,18 @@ function Task() {
 
     const onEditClick = (id, description, complete) => {
 
-        settaskState({ ...taskState, edit_Task: true, id: id, complete: complete, description:description })
+        settaskState({ ...taskState, edit_Task: true, id: id, complete: complete, description: description })
     }
 
     const handleEditTask = () => {
 
         if (token) {
+            setIsLoading(true)
             axios.patch('/tasks/' + taskState.id, { description: taskState.description, completed: taskState.complete }, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
                 .then(response => {
+                    setIsLoading(false)
                     get_task_lists()
-                    settaskState({ ...taskState, edit_Task: false,  description:'' })
+                    settaskState({ ...taskState, edit_Task: false, description: '' })
                 })
 
         }
@@ -119,11 +138,15 @@ function Task() {
 
     const handleDeleteTask = (id) => {
         if (window.confirm("Are you sure?")) {
+            setIsLoading(true)
             axios.delete('/tasks/' + id, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }).then(res => {
+                setIsLoading(false)
                 setTasks(tasks.filter(task => task._id !== id))
+                settaskState({ ...taskState, edit_Task: false, description: '' })
+                get_task_lists();
             })
         }
-        get_task_lists();
+
     }
 
     const handleSideBar = () => {
@@ -138,7 +161,9 @@ function Task() {
     }
 
     return (
-        <div>
+        <LoadingOverlay
+            active={isLoading}
+            spinner={<BounceLoader />}>
             <div id="Screen_main">
                 <SideBar />
                 <div className="header">
@@ -171,19 +196,20 @@ function Task() {
                                 <div className="progress-task-left">
                                     <h3>Progress Task</h3>
                                     <label style={{ paddingTop: "3em" }}>Done</label>
-                                    <label style={{ float: "right", paddingTop: "3em" }}>{complete * 100 / tasks.length}%</label><br />
+                                    <label style={{ float: "right", paddingTop: "3em" }}>{taskCount.taskCompleted ? taskCount.taskCompleted : 0}%</label><br />
                                     <div className="bar-comp"><span className="bar-progress-comp" style={{
-                                        width: taskCount.taskCompleted
+                                        width: taskCount.taskCompleted ? taskCount.taskCompleted + "%" : 0
+
                                     }}></span></div><br />
                                     <label style={{ paddingTop: "2em" }}>In Progress</label>
-                                    <label style={{ float: "right", paddingTop: "2em" }}>{incomplete * 100 / tasks.length}%</label><br />
+                                    <label style={{ float: "right", paddingTop: "2em" }}>{taskCount.taskInprogress ? taskCount.taskInprogress : 0}%</label><br />
                                     <div className="bar-inpr" ><span className="bar-progress-inpr" style={{
-                                        width: taskCount.taskInprogress
+                                        width: taskCount.taskInprogress ? taskCount.taskInprogress + "%" : 0
                                     }}></span></div>
                                 </div>
                                 <div className="progress-task-right">
-                                    <div className="circle-border" style={{ backgroundImage: "linear-gradient(" + (((incomplete * 100 / tasks.length) / 100) * 360) + "deg, transparent 50%, #E53B3B 50%), linear-gradient(0deg, #E53B3B 50%, transparent 50%)" }}>
-                                        <div className="circle"> <label className="circle-percent" style={{ paddingTop: "4.2em", paddingLeft: "0.2em" }}>{incomplete * 100 / tasks.length}%</label>
+                                    <div className="circle-border" style={{ backgroundImage: "linear-gradient(" + taskCount.taskInprogressC + "deg, transparent 50%, #E53B3B 50%), linear-gradient(0deg, #E53B3B 50%, transparent 50%)" }}>
+                                        <div className="circle"> <label className="circle-percent" style={{ paddingTop: "4.2em", paddingLeft: "0.2em" }}>{taskCount.taskInprogress ? taskCount.taskInprogress : 0}%</label>
                                         </div>
                                     </div>
                                 </div>
@@ -248,7 +274,7 @@ function Task() {
             </div>
 
             <div id="Screen_mobile">
-                {sideBar ? <SideBar /> : null}
+                {sideBar ? <SideBar handleSideBar={handleSideBar} /> : null}
                 <div className="header-top">
                     <i className="fas fa-bars" id="bars" onClick={handleSideBar}></i>
                     <img src={ProfileImg} className="image" alt="some text" />
@@ -263,8 +289,8 @@ function Task() {
                 </div>
 
                 <div className="add-task-m">
-                    <textarea className={taskState.error} value={taskState.description}
-                        onChange={event => settaskState({ ...taskState, description: event.target.value, error: 'textarea' })}
+                    <textarea className={taskState.errorM} value={taskState.description}
+                        onChange={event => settaskState({ ...taskState, description: event.target.value, errorM: 'textarea-m' })}
                     ></textarea>
                     {
                         taskState.edit_Task ? <button className="btn-edit-task-m" onClick={handleEditTask}>{taskState.btn_Name_edittask}</button> :
@@ -328,7 +354,7 @@ function Task() {
                 )}
             </div>
 
-        </div>
+        </LoadingOverlay>
 
 
     )
