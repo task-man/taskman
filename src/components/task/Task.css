@@ -556,11 +556,6 @@ body {
         
     }
 
-    div[id^="rdw-wrapper-"] {
-        padding: 0.25em;
-        background:rgba(255, 255, 255, 1);
-      }
-
     .textarea-m {
         padding: 0.5em;
         border: 1px solid rgba(13, 101, 217, 1);
@@ -580,7 +575,7 @@ body {
         padding: 0.5em;
         border: 2px solid red;
         border-radius: 0.4em;
-        height: 11em;
+        height: 10em;
         width: 90vw;
         color:rgb(68, 70, 72)
     }

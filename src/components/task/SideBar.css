@@ -1,7 +1,7 @@
 .sidebar {
     background-color: rgba(13, 101, 217, 1);
     width: 15em;
-    height: 88vh;
+    height: 84vh;
     border-bottom-right-radius: 1em;
     border-top-right-radius: 1em;
 }
@@ -80,7 +80,7 @@ i{
 }
 
 .sidebar-footer{
-    margin-top: 25vh;
+    margin-top: 60%;
     
 }
 
