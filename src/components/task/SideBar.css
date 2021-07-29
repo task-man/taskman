@@ -1,6 +1,6 @@
 .sidebar {
     background-color: rgba(13, 101, 217, 1);
-    width: 15em;
+    width: 14.5em;
     height: 84vh;
     border-bottom-right-radius: 1em;
     border-top-right-radius: 1em;
@@ -80,7 +80,7 @@ i{
 }
 
 .sidebar-footer{
-    margin-top: 60%;
+    margin-top: 70%;
     
 }
 
@@ -100,6 +100,30 @@ a:hover{
 @media (min-width:1200px){
     #icon-back{
         display: none;
+    }
+}
+
+@media (max-height:700px){
+    .sidebar-footer{
+        margin-top: 52%;
+    }
+}
+
+@media (max-height:672px){
+    .sidebar-footer{
+        margin-top: 44%;
+    }
+}
+
+@media (max-height:652px){
+    .sidebar-footer{
+        margin-top: 38%;
+    }
+}
+
+@media (max-height:642px){
+    .sidebar-footer{
+        margin-top: 30%;
     }
 }
 
