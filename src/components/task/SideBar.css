@@ -107,11 +107,18 @@ a:hover{
     .sidebar-footer{
         margin-top: 52%;
     }
+    .sidebar{
+        width:14.2em;
+    }
 }
 
 @media (max-height:672px){
     .sidebar-footer{
         margin-top: 44%;
+        
+    }
+    .sidebar{
+        width:14em;
     }
 }
 
@@ -119,14 +126,47 @@ a:hover{
     .sidebar-footer{
         margin-top: 38%;
     }
+    .sidebar{
+        width:13.8em;
+    }
 }
 
 @media (max-height:642px){
     .sidebar-footer{
         margin-top: 30%;
     }
+    .sidebar{
+        width:13.7em;
+    }
 }
 
+@media (max-height:632px){
+    .sidebar-footer{
+        margin-top: 28%;
+    }
+    .sidebar{
+        width:13.5em ;
+    }
+}
+
+@media (max-height:622px){
+    .sidebar-footer{
+        margin-top: 20%;
+    }
+    .sidebar{
+        width:13.4em ;
+    }
+}
+
+
+@media (max-height:612px){
+    .sidebar-footer{
+        margin-top: 20%;
+    }
+    .sidebar{
+        width:13.2em;
+    }
+}
 
 @media (max-width:1200px){
     .sidebar {
