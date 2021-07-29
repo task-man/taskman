@@ -353,7 +353,6 @@ form.sign-up-form{
     }
 
     .panels-container{
-        z-index: 10;
         grid-template-columns: 1fr;
         grid-template-rows: 1fr 2fr 1fr;
     }
@@ -413,7 +412,7 @@ form.sign-up-form{
         transform: translateY(-300px);
     }
 
-    .container.sign-up-mode .signin-signup{
+    .containers.sign-up-mode .signin-signup{
         top: 5%;
         transform: translate(-50%, 0);
         left: 50%;
