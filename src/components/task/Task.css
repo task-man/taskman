@@ -109,10 +109,12 @@ body {
 .card-row-one {
     display: flex;
     margin: 0.5em;
+    width: 98%
 }
 
 .add-task {
     display: grid;
+    width: 50%
 }
 
 .textarea{
@@ -120,7 +122,7 @@ body {
     border: 1px solid rgba(13, 101, 217, 1);
     border-radius: 0.4em;
     height: 11em;
-    width: 40vw;
+    width: 98%;
     color:rgb(68, 70, 72)
 }
 
@@ -129,7 +131,7 @@ body {
     border: 2px solid red;
     border-radius: 0.4em;
     height: 11em;
-    width: 40vw;
+    width: 98%;
     color:rgb(68, 70, 72)
 }
 
@@ -146,7 +148,7 @@ body {
 
 .btn-add-task {
     background-color: rgba(107, 165, 242, 1);
-    width: 8em;
+    width: 22%;
     height: 2em;
     color: rgba(255, 255, 255, 1);
     border: none;
@@ -154,26 +156,36 @@ body {
     border-radius: 0.5em;
 }
 
-div[id^="rdw-wrapper-"] {
-    padding: 0.25em;
-    
-  }
-
-.editor-wrapper-class {
-    border: 1px solid rgba(13, 101, 217, 1);
-    border-radius: 0.4em;
-    height: 16em;
-}
 
 .progress-task {
     border: 1px solid rgba(13, 101, 217, 1);
     border-radius: 0.4em;
-    width: 35em;
+    float: right;
+    width: 40%;
     height: 14em;
-    padding: 0.75em;
-    margin-left: 6vw;
+    padding: 0.25em;
+    margin-left: 10%;
     display: inline-flex;
 }
+
+
+.progress-task-right {
+  
+    float: left;
+    width: 35%;
+    height: 14em;
+    padding: 0.75em;
+}
+
+
+.progress-task-left {
+    
+    float: left;
+    width: 65%;
+    height: 12em;
+    padding: 0.75em;
+}
+
 
 .task-heading h3 {
     text-align: left;
@@ -357,7 +369,7 @@ div[id^="rdw-wrapper-"] {
     background: rgba(235, 28, 35, 1);
     border-radius: 2em;
     height: 0.4em;
-    width: 10em;
+    width: 98%
 }
 
 .progress-bar-completed {
@@ -371,7 +383,7 @@ div[id^="rdw-wrapper-"] {
     background: rgb(234, 238, 238) ;
     border-radius: 2em;
     height: 0.4em;
-    width: 14em;
+    width: 98%;
     margin-top: 0.5em;
 }
 
@@ -385,7 +397,7 @@ div[id^="rdw-wrapper-"] {
     background: rgb(234, 238, 238) ;
     border-radius: 2em;
     height: 0.4em;
-    width: 14em;
+    width: 98%;
     margin-top: 0.5em;
 }
 
@@ -397,7 +409,7 @@ div[id^="rdw-wrapper-"] {
 
 
 .bar-progress-comp{
-    
+    width: inherit;
     animation: bar-progress-comp 2s;
 }
 
@@ -444,11 +456,8 @@ div[id^="rdw-wrapper-"] {
     height: 110px;
     margin-top: 3em;
     border-radius: 100%;
+    margin-left: 2%;
     background-color: rgb(234, 238, 238)
-}
-
-.progress-task-right {
-    padding-left: 3.5em;
 }
 
 @media (max-width: 1200px) {
