@@ -1,7 +1,7 @@
 import './SideBar.css'
 import axios from "axios";
 import {useHistory} from "react-router";
-import { useState,useEffect } from "react";
+import { useState } from "react";
 
 const active_state = {
     taskActive: 'list-active',
@@ -10,17 +10,12 @@ const active_state = {
     settingsActive: 'list'
 }
 
-function SideBar(props) {
+function SideBar() {
 
     const history = useHistory();
 
     const [active, setActive] = useState(active_state);
-    const [display, setDisplay] = useState('none');
-
-    useEffect(() => {
-        setDisplay(props.display)
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [props.display])
+    const [sideBar, setsideBar] = useState(false);
 
     // For logout
     const handleLogout = () => {
@@ -46,13 +41,22 @@ function SideBar(props) {
        }
     }
 
-    const handleSidebarDisplay = () => {
-        setDisplay('none')
+    const handleSideBar = () => {
+
+        console.log(sideBar)
+
+        if (sideBar === true) {
+            setsideBar(false)
+        }
+        else {
+            setsideBar(true)
+        }
     }
 
+
     return (
-        <div className="sidebar" style={{display:display}}>
-            <i class="fas fa-angle-double-left" id="icon-back" onClick={handleSidebarDisplay}></i>
+        <div className="sidebar">
+            <i class="fas fa-angle-double-left" id="icon-back" onClick={handleSideBar}></i>
             <div className="header-logo">
                 <i className="fab fa-joomla"></i>
                 LOGO

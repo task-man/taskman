@@ -115,16 +115,31 @@ body {
     display: grid;
 }
 
+.textarea{
+    padding: 0.5em;
+    border: 1px solid rgba(13, 101, 217, 1);
+    border-radius: 0.4em;
+    height: 11em;
+    width: 40vw;
+    color:rgb(68, 70, 72)
+}
 
-.textarea.rdw-editor-main {
-    height: 50%;
-    overflow: auto;
-    box-sizing: border-box;
-    color:rgba(107, 165, 242, 1)
+.textarea-error{
+    padding: 0.5em;
+    border: 2px solid red;
+    border-radius: 0.4em;
+    height: 11em;
+    width: 40vw;
+    color:rgb(68, 70, 72)
 }
 
 .textarea:focus {
     border: 2px solid rgba(13, 101, 217, 1);
+    outline: none;
+}
+
+.textarea-error:focus {
+    border: 2px solid red;
     outline: none;
 }
 
@@ -143,10 +158,6 @@ div[id^="rdw-wrapper-"] {
     padding: 0.25em;
     
   }
-
-.textarea {
-    border: none;
-}
 
 .editor-wrapper-class {
     border: 1px solid rgba(13, 101, 217, 1);
@@ -265,15 +276,28 @@ div[id^="rdw-wrapper-"] {
     width: inherit;
 }
 
-.task-table td, .task-table th {
+.task-table th {
     border-bottom: none;
     padding-left: 1em;
-    padding-right: 7em;
-    padding-top: 1em;
-    padding-bottom: 1em;
+    padding-right: 5em;
+    padding-top: 0.75em;
+    padding-bottom: 0.75em;
     text-align: left;
     font-family: Montserrat;
     font-size: 14px;
+    color: black
+}
+
+.task-table td{
+    border-bottom: none;
+    padding-left: 1em;
+    padding-right: 5em;
+    padding-top: 0.75em;
+    padding-bottom: 0.75em;
+    text-align: left;
+    font-family: Montserrat;
+
+    font-size: 13.5px;
     color: black
 }
 
@@ -307,7 +331,28 @@ div[id^="rdw-wrapper-"] {
     color: rgba(163, 157, 157, 1);
 }
 
+.task-state-done{
+    background: green;
+    padding: 0.3em;
+    border-radius: 1em;
+    color: white;
+}
 
+.task-state-inp{
+    background: red;
+    padding: 0.3em;
+    border-radius: 1em;
+    color: white;
+    font-size: smaller;
+}
+
+.circle-percent{
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 10px;
+    color: rgba(163, 157, 157, 1);
+}
 .progress-bar-in-progress {
     background: rgba(235, 28, 35, 1);
     border-radius: 2em;
@@ -385,6 +430,7 @@ div[id^="rdw-wrapper-"] {
     top: 5px;
     left: 5px;
     text-align: center;
+    justify-content: center;
     width: 100px;
     height: 100px;
     border-radius: 100%;
@@ -396,14 +442,13 @@ div[id^="rdw-wrapper-"] {
     text-align: center;
     width: 110px;
     height: 110px;
-    margin-top: 4em;
+    margin-top: 3em;
     border-radius: 100%;
-    background-color: #E53B3B;
-    background-image: linear-gradient(182deg, transparent 50%, rgba(13, 101, 217, 1) 50%), linear-gradient(90deg, rgba(13, 101, 217, 1) 50%, transparent 50%);
+    background-color: rgba(13, 101, 217, 1) 
 }
 
 .progress-task-right {
-    padding-left: 5em;
+    padding-left: 3.5em;
 }
 
 @media (max-width: 1200px) {

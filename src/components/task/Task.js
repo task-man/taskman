@@ -5,25 +5,19 @@ import { useState, useEffect } from "react";
 import { useHistory } from "react-router";
 import axios from 'axios'
 import moment from "moment";
-import { Editor } from "react-draft-wysiwyg";
-import { EditorState, ContentState } from 'draft-js';
-import draftToHtml from 'draftjs-to-html';
-import { convertToRaw } from 'draft-js';
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import Parser from 'html-react-parser';
-import htmlToDraft from 'html-to-draftjs';
 
 
-const edit_Task = {
+
+const task_state = {
     btn_Name_addtask: "Add Task",
     btn_Name_edittask: "Update Task",
     edit_Task: false,
     id: '',
-    complete: false
-}
-
-const Pagination = {
-    orderBy: "asc"
+    description: '',
+    complete: false,
+    error: 'textarea'
 }
 
 const taskStatus = {
@@ -36,12 +30,9 @@ function Task() {
     const [tasks, setTasks] = useState([]);
     const [incomplete, setIncomplete] = useState(0);
     const [complete, setcomplete] = useState(0);
-    const [editorState, setEditorState] = useState(() => EditorState.createEmpty(),);
-    const [taskArea, setTaskArea] = useState("textarea");
-    const [editTask, seteditTask] = useState(edit_Task);
-    const [pagination, setPagination] = useState(Pagination);
+    const [taskState, settaskState] = useState(task_state);
     const [taskCount, settaskCount] = useState(taskStatus);
-    const [sideBar, setsideBar] = useState('block');
+    const [sideBar, setsideBar] = useState(false);
 
 
     const history = useHistory();
@@ -61,7 +52,7 @@ function Task() {
 
     async function get_task_lists() {
         if (token) {
-            await axios.get('/tasks?sortBy=createdAt:' + pagination.orderBy, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
+            await axios.get('/tasks?sortBy=createdAt:asc', { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
                 .then(response => {
                     setTasks(response.data)
                     setIncomplete(0)
@@ -90,17 +81,15 @@ function Task() {
     }
 
     const handleAddTask = () => {
-        const value = draftToHtml(convertToRaw(editorState.getCurrentContent()))
 
         if (token) {
-            if (value.length === 8) {
-                setTaskArea("textarea")
+            if (taskState.description === '') {
+                settaskState({ ...taskState, error: 'textarea-error' })
             } else {
-                axios.post('/tasks', { description: value }, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
+                axios.post('/tasks', { description: taskState.description }, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
                     .then(response => {
-                        setEditorState(EditorState.createEmpty())
+                        settaskState({ ...taskState, description:'' })
                         get_task_lists()
-
                     })
             }
         } else {
@@ -108,35 +97,18 @@ function Task() {
         }
     }
 
-    const onContentStateChange = (editorState) => {
-        setEditorState(editorState)
-        setTaskArea("textarea")
-    };
-
     const onEditClick = (id, description, complete) => {
 
-        seteditTask({ ...editTask, edit_Task: true, id: id, complete: complete })
-
-        // const html = '<p>' + description + '</p>';
-        const html = description;
-        const contentBlock = htmlToDraft(html);
-        if (contentBlock) {
-            const contentState = ContentState.createFromBlockArray(contentBlock.contentBlocks);
-            const editorState = EditorState.createWithContent(contentState);
-            setEditorState(editorState)
-        }
+        settaskState({ ...taskState, edit_Task: true, id: id, complete: complete, description:description })
     }
 
     const handleEditTask = () => {
 
-        const value = draftToHtml(convertToRaw(editorState.getCurrentContent()))
-
         if (token) {
-            axios.patch('/tasks/' + editTask.id, { description: value, completed: editTask.complete }, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
+            axios.patch('/tasks/' + taskState.id, { description: taskState.description, completed: taskState.complete }, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
                 .then(response => {
-                    setEditorState(EditorState.createEmpty())
                     get_task_lists()
-                    seteditTask({ ...editTask, edit_Task: false })
+                    settaskState({ ...taskState, edit_Task: false,  description:'' })
                 })
 
         }
@@ -154,20 +126,15 @@ function Task() {
         get_task_lists();
     }
 
-    const handlePagination = (event) => {
-
-        setPagination({ ...pagination, orderBy: event.target.value })
-
-        get_task_lists()
-    }
-
     const handleSideBar = () => {
-        if (sideBar === 'none') {
-            setsideBar('block')
+
+        if (sideBar === true) {
+            setsideBar(false)
         }
-        else{
-            setsideBar('none')
+        else {
+            setsideBar(true)
         }
+
     }
 
     return (
@@ -190,22 +157,13 @@ function Task() {
                     <div class="card">
                         <div className="card-row-one">
                             <div className="add-task">
-                                <Editor
-                                    editorState={editorState}
-                                    editorClassName={taskArea}
-                                    wrapperClassName="editor-wrapper-class"
-                                    onEditorStateChange={onContentStateChange}
-                                    toolbar={{
-                                        inline: { inDropdown: true },
-                                        list: { inDropdown: true },
-                                        textAlign: { inDropdown: true },
-                                        link: { inDropdown: true },
-                                        history: { inDropdown: true },
-                                    }}
-                                />
+                                <textarea className={taskState.error} value={taskState.description}
+                                    onChange={event => settaskState({ ...taskState, description: event.target.value, error: 'textarea' })}
+                                    placeholder="Write Task"
+                                ></textarea>
                                 {
-                                    editTask.edit_Task ? <button className="btn-add-task" onClick={handleEditTask}>{editTask.btn_Name_edittask}</button> :
-                                        <button className="btn-add-task" onClick={handleAddTask}>{editTask.btn_Name_addtask}</button>
+                                    taskState.edit_Task ? <button className="btn-add-task" onClick={handleEditTask}>{taskState.btn_Name_edittask}</button> :
+                                        <button className="btn-add-task" onClick={handleAddTask}>{taskState.btn_Name_addtask}</button>
                                 }
 
                             </div>
@@ -224,8 +182,8 @@ function Task() {
                                     }}></span></div>
                                 </div>
                                 <div className="progress-task-right">
-                                    <div className="circle-border">
-                                        <div className="circle">
+                                    <div className="circle-border" style={{ backgroundImage: "linear-gradient(" + (((incomplete * 100 / tasks.length) / 100) * 360) + "deg, transparent 50%, #E53B3B 50%), linear-gradient(0deg, #E53B3B 50%, transparent 50%)" }}>
+                                        <div className="circle"> <label className="circle-percent" style={{ paddingTop: "4.2em", paddingLeft: "0.2em" }}>{incomplete * 100 / tasks.length}%</label>
                                         </div>
                                     </div>
                                 </div>
@@ -245,7 +203,7 @@ function Task() {
                                     <button className="btn-fltr-s-task">10</button>
                                     <button className="btn-fltr-s-task">20</button>
                                     <button className="btn-fltr-s-task">30</button>
-                                    <select placeholder="Sort by" className="dropdown-task" value={pagination.orderBy} onChange={handlePagination}>
+                                    <select placeholder="Sort by" className="dropdown-task">
                                         <option value="asc">Latest Task</option>
                                         <option value="desc">Oldest Task</option>
                                     </select>
@@ -271,7 +229,8 @@ function Task() {
                                             task => <tr key={task._id}>
 
                                                 <td>{Parser(task.description)}</td>
-                                                <td>{task.completed ? "Done" : "In Progress"}</td>
+                                                <td>{task.completed ? <label className="task-state-done">Done</label>
+                                                    : <label className="task-state-inp">In Progress</label>} </td>
                                                 <td>{moment(task.createdAt).format("DD MMMM, hh:mm A")}</td>
                                                 <td onClick={() => onEditClick(task._id, task.description, task.completed)}
                                                 ><i className="fas fa-edit" id="task-icon"></i></td>
@@ -289,7 +248,7 @@ function Task() {
             </div>
 
             <div id="Screen_mobile">
-                {sideBar ? <SideBar display={sideBar} /> : null}
+                {sideBar ? <SideBar /> : null}
                 <div className="header-top">
                     <i className="fas fa-bars" id="bars" onClick={handleSideBar}></i>
                     <img src={ProfileImg} className="image" alt="some text" />
@@ -304,23 +263,12 @@ function Task() {
                 </div>
 
                 <div className="add-task-m">
-                    <Editor
-                        editorState={editorState}
-                        editorClassName={taskArea}
-                        wrapperClassName="editor-wrapper-class"
-                        onEditorStateChange={onContentStateChange}
-                        toolbar={{
-                            // inline: { inDropdown: true },
-                            // list: { inDropdown: true },
-                            //textAlign: { inDropdown:true },
-                            //  link: { inDropdown: true },
-                            //history: { inDropdown: true },
-                        }}
-                    />
-
+                    <textarea className={taskState.error} value={taskState.description}
+                        onChange={event => settaskState({ ...taskState, description: event.target.value, error: 'textarea' })}
+                    ></textarea>
                     {
-                        editTask.edit_Task ? <button className="btn-edit-task-m" onClick={handleEditTask}>{editTask.btn_Name_edittask}</button> :
-                            <button className="btn-add-task-m" onClick={handleAddTask}>{editTask.btn_Name_addtask}</button>
+                        taskState.edit_Task ? <button className="btn-edit-task-m" onClick={handleEditTask}>{taskState.btn_Name_edittask}</button> :
+                            <button className="btn-add-task-m" onClick={handleAddTask}>{taskState.btn_Name_addtask}</button>
                     }
                 </div>
 
