@@ -1,7 +1,7 @@
 .sidebar {
     background-color: rgba(13, 101, 217, 1);
-    width: 14.5em;
-    height: 84vh;
+    width: 15%;
+    height: 90%;
     border-bottom-right-radius: 1em;
     border-top-right-radius: 1em;
 }
@@ -80,8 +80,9 @@ i{
 }
 
 .sidebar-footer{
-    margin-top: 70%;
-    
+    margin-top: 80%;
+    margin-bottom: 0.5em;
+
 }
 
 a{
@@ -103,7 +104,7 @@ a:hover{
     }
 }
 
-@media (max-height:700px){
+/* @media (max-height:700px){
     .sidebar-footer{
         margin-top: 52%;
     }
@@ -166,7 +167,7 @@ a:hover{
     .sidebar{
         width:13.2em;
     }
-}
+} */
 
 @media (max-width:1200px){
     .sidebar {
