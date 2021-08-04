@@ -4,6 +4,8 @@ import './Login.css'
 import loginImg from '../../images/login.svg'
 import signupImg from '../../images/signup.svg'
 import {useHistory} from "react-router";
+import BounceLoader from "react-spinners/ClipLoader";
+import LoadingOverlay from 'react-loading-overlay'
 
 //initial login state
 const login_state = {
@@ -28,7 +30,8 @@ const signup_state = {
 function Login() {
 
     const history = useHistory();
-    const [className, setClassName] = useState('container');
+    const [className, setClassName] = useState('containers');
+    const [isLoading, setIsLoading] = useState(false)
     const [loginObject, setloginObject] = useState(login_state)
     const [signUpObject, setSignUpObject] = useState(signup_state)
 
@@ -46,19 +49,27 @@ function Login() {
         } else if (loginObject.password === '') {
             setloginObject({...loginObject, login_password: 'error-input-field'})
         } else {
-            axios.post('https://umesh-task-manager.herokuapp.com/users/login', login_parameter)
+            setIsLoading(true)
+            axios.post('/users/login', login_parameter)
                 .then(response => {
-                    console.log(response);
+                    setIsLoading(false)
                     let state_value = response.status
                     if (state_value === 200) {
+                        setIsLoading(false)
                         localStorage.setItem('token', response.data.token)
-                        history.push('/dashboard');
+                        localStorage.setItem("user_id", response.data.user._id)
+                        history.push('/task');
                     }
-                    localStorage.setItem("access-token", response.data);
                 }).catch(error => {
-                    let state_value = error.response.status
-                    if (state_value === 400)
-                        setloginObject({...loginObject, error_field: 'error-field-show'})
+                    if (!error.response) {
+                        setIsLoading(false)
+                        history.push('/auth/error');
+                    } else {
+                        setIsLoading(false)
+                        let state_value = error.response.status
+                        if (state_value === 503 || 400)
+                            setloginObject({...loginObject, error_field: 'error-field-show'})
+                    }
                 }
             );
         }
@@ -82,35 +93,46 @@ function Login() {
         } else if (signUpObject.password === '') {
             setSignUpObject({...signUpObject, signup_password: 'error-input-field'})
         } else {
-            axios.post('https://umesh-task-manager.herokuapp.com/users', signup_parameter)
+            setIsLoading(true)
+            axios.post('/users', signup_parameter)
                 .then(response => {
-                    console.log(response);
+                    setIsLoading(false)
                     let state_value = response.status
-                    if (state_value === 200) {
+                    if (state_value === 201) {
+                        setIsLoading(false)
                         localStorage.setItem('token', response.data.token)
-                        history.push('/dashboard');
+                        localStorage.setItem("user_id", response.data._id)
+                        alert("Sign up is successful!")
+                        history.push('/task');
                     }
-                    localStorage.setItem("access-token", response.data);
                 }).catch(error => {
-                    console.log(error.response)
-                    let state_value = error.response.status
-                    if (state_value === 503)
-                        setloginObject({...loginObject, error_field: 'error-field-show'})
+                    if (!error.response) {
+                        setIsLoading(false)
+                        history.push('/auth/error');
+                    } else {
+                        setIsLoading(false)
+                        let state_value = error.response.status
+                        if (state_value === 503 || 400)
+                            setloginObject({...loginObject, error_field: 'error-field-show'})
+                    }
                 }
-            );
+            )
         }
 
     }
 
     const addSignUpMode = () => {
-        setClassName('container sign-up-mode')
+        setClassName('containers sign-up-mode')
     }
 
     const removeSignUpMode = () => {
-        setClassName('container')
+        setClassName('containers')
     }
 
-    return (
+    return <LoadingOverlay
+        active={isLoading}
+        spinner={<BounceLoader/>}>
+
         <div className={className}>
             <div className="form-container">
                 <div className="signin-signup">
@@ -140,7 +162,7 @@ function Login() {
                         <div className={loginObject.error_field}>
                             <label className="sign-in-label">Invalid Username or Password</label>
                         </div>
-                        <input type="submit" value="Login" className="btn solid"></input>
+                        <input type="submit" value="Login" className="btns solid"></input>
                         <p className="social-text">Or Sign in with social platforms</p>
                         <div className="social-media">
                             <a href="/#" className="social-icon">
@@ -184,7 +206,7 @@ function Login() {
                         <div className={signUpObject.signup_password}>
                             <i className="fas fa-lock"></i>
                             <input type="password" placeholder="Password" value={signUpObject.password}
-                                   onChange={event => setSignUpObject({
+                                   onChange = {event => setSignUpObject({
                                        ...signUpObject, password: event.target.value,
                                        signup_password: 'input-field', error_field: 'error-field-hide'
                                    })}
@@ -193,7 +215,7 @@ function Login() {
                         <div className={signUpObject.error_field}>
                             <label className="sign-up-label">Invalid Email or Email already exist</label>
                         </div>
-                        <input type="submit" value="Sign up" className="btn solid"></input>
+                        <input type="submit" value="Sign up" className="btns solid"></input>
                         <p className="social-text">Or Sign up with social platforms</p>
                         <div className="social-media">
                             <a href="/#" className="social-icon">
@@ -220,26 +242,27 @@ function Login() {
                     <div className="content">
                         <h3>New here?</h3>
                         <p>Sign up to get into a larger and awesome web application!</p>
-                        <button className="btn transparent" id="sign-up-btn" onClick={addSignUpMode}>Sign up</button>
+                        <button className="btns transparent" id="sign-up-btn" onClick={addSignUpMode}>Sign up</button>
 
                     </div>
 
-                    <img src={loginImg} className="image" alt="some text"/>
+                    <img src={loginImg} className="images" alt="some text"/>
                 </div>
 
                 <div className="panel right-panel">
                     <div className="content">
                         <h3>One of us?</h3>
                         <p>Sign in to get into a larger and awesome web application!</p>
-                        <button className="btn transparent" id="sign-in-btn" onClick={removeSignUpMode}>Sign in</button>
+                        <button className="btns transparent" id="sign-in-btn" onClick={removeSignUpMode}>Sign in
+                        </button>
 
                     </div>
 
-                    <img src={signupImg} className="image" alt="some text"/>
+                    <img src={signupImg} className="images" alt="some text"/>
                 </div>
             </div>
         </div>
-    )
+    </LoadingOverlay>
 }
 
 export default Login;

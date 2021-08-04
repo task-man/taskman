@@ -1,19 +1,20 @@
 import './App.css';
 import Login from './components/authentication/Login';
-import Dashboard from './components/dashboard/Dashboard'
+import Task from './components/task/Task';
 import {BrowserRouter as Router,Switch ,Route}  from 'react-router-dom'
 
 function App() {
-    return (
-        <div className="App">
-            <Router>
-                <Switch>
-                    <Route exact strict path="/login" component={Login} />
-                    <Route exact strict path="/dashboard" component={Dashboard} />
-                </Switch>
-            </Router>
-        </div>
-    );
+  return (
+    <div className="App">
+      <Router>
+        <Switch>
+          <Route exact strict path="/login" component={Login} />
+          <Route exact strict path="/" component={Login} />
+          <Route exact strict path="/task" component={Task} />
+        </Switch>
+      </Router>
+    </div>
+  );
 }
 
 export default App;

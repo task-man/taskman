@@ -1,0 +1,767 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border: none;
+    font-family: Montserrat;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+#Screen_main {
+    display: flex;
+    width: 100%;
+    height: auto;
+    background-color: rgb(234, 238, 238);
+    overflow-x: hidden;
+}
+
+#Screen_mobile {
+    display: none;
+}
+
+.image {
+    width: 50px;
+    height: 50px;
+    top: 0px;
+    margin-right: 2rem;
+    margin-top: 0.25em;
+}
+
+.header {
+    margin-top: 1.8rem;
+    width: 85%;
+    height: auto;
+    margin-left: 2.5%;
+}
+
+.header-user {
+    text-align: left;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 22px;
+    color: rgba(13, 101, 217, 1);
+}
+
+.header-p-task {
+    text-align: left;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 10px;
+    color: rgba(163, 157, 157, 1);
+}
+
+.header-p-task-count {
+    white-space: nowrap;
+    text-align: left;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 10px;
+    color: black;
+}
+
+.header-search {
+    padding: 0.5rem;
+    width: 240px;
+    height: 30px;
+    background: rgba(209, 210, 212, 1);
+    border-radius: 0.2rem;
+    margin-right: 3rem;
+    margin-top: 12px;
+}
+
+.header-sub-right i {
+    margin-right: 3rem;
+    margin-top: 20px;
+    text-align: center;
+    font-size:26px;
+    cursor: pointer;
+}
+
+.header-sub-right {
+    float: right;
+    display: flex;
+    align-items: center;
+}
+
+.header-sub-left {
+    float: left;
+
+}
+
+.card {
+    box-shadow: 0 8px 25px rgb(0 0 0 / 0.2);
+    background: rgba(255, 255, 255, 1);
+    width: 98%;
+    height: auto;
+    margin-top: 6em;
+    margin-bottom: 5em;
+    display: block;
+    border-radius: 0.4em;
+    padding: 2em;
+}
+
+.card-row-one {
+    display: flex;
+    margin: 0.5em;
+    width: 98%
+}
+
+.add-task {
+    display: grid;
+    width: 50%
+}
+
+.textarea{
+    padding: 0.5em;
+    border: 1px solid rgba(13, 101, 217, 1);
+    border-radius: 0.4em;
+    height: 11em;
+    width: 98%;
+    color:rgb(68, 70, 72)
+}
+
+.textarea-error{
+    padding: 0.5em;
+    border: 2px solid red;
+    border-radius: 0.4em;
+    height: 11em;
+    width: 98%;
+    color:rgb(68, 70, 72)
+}
+
+.textarea:focus {
+    border: 2px solid rgba(13, 101, 217, 1);
+    outline: none;
+}
+
+.textarea-error:focus {
+    border: 2px solid red;
+    outline: none;
+}
+
+
+.btn-add-task {
+    background-color: rgba(107, 165, 242, 1);
+    width: 22%;
+    height: 2em;
+    color: rgba(255, 255, 255, 1);
+    border: none;
+    margin-top: 1em;
+    border-radius: 0.5em;
+}
+
+
+.progress-task {
+    border: 1px solid rgba(13, 101, 217, 1);
+    border-radius: 0.4em;
+    float: right;
+    width: 40%;
+    height: 14em;
+    padding: 0.25em;
+    margin-left: 10%;
+    display: inline-flex;
+}
+
+
+.progress-task-right {
+  
+    float: left;
+    width: 35%;
+    height: 14em;
+    padding: 0.75em;
+}
+
+
+.progress-task-left {
+    
+    float: left;
+    width: 65%;
+    height: 12em;
+    padding: 0.75em;
+}
+
+
+.task-heading h3 {
+    text-align: left;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    color: black
+}
+
+.task-heading {
+    margin-top: 2em;
+}
+
+.card-row-two {
+    padding: 0.5em;
+}
+
+.btn-fltr-task {
+    background-color: rgba(107, 165, 242, 1);
+    width: 6em;
+    height: 2em;
+    color: rgba(255, 255, 255, 1);
+    border: none;
+    margin-right: 0.5em;
+    border-radius: 0.5em;
+
+}
+
+.btn-fltr-m-task {
+    background-color: rgba(163, 157, 157, 1);
+    width: 7em;
+    height: 2em;
+    color: rgba(255, 255, 255, 1);
+    border: none;
+    margin-right: 0.5em;
+    border-radius: 0.5em;
+
+}
+
+
+.btn-fltr-s-task {
+    background-color: rgba(255, 255, 255, 1);
+    width: 1.5em;
+    height: 1.5em;
+    color: black;
+    border: none;
+    margin-right: 1.5em;
+    border-radius: 1.5em;
+
+}
+
+.btn-fltr-s-task:hover {
+    background-color: rgb(191, 195, 201);
+    width: 1.5em;
+    height: 1.5em;
+    color: rgb(32, 119, 233);
+    border: none;
+    border-radius: 1.5em;
+}
+
+.dropdown-task {
+    background-color: rgb(255, 255, 255);
+    width: 9em;
+    height: 2.2em;
+    color: rgb(110, 106, 106);
+    border: 1px solid rgb(205, 206, 207);
+    margin-right: 0.5em;
+    border-radius: 0.5em;
+}
+
+.dropdown-task::selection {
+    background-color: rgb(255, 255, 255);
+    width: 9em;
+    height: 2.2em;
+    color: rgb(110, 106, 106);
+    border: 1px solid rgb(32, 119, 233);
+    margin-right: 0.5em;
+    border-radius: 0.5em;
+}
+
+.task-table-div {
+    margin-top: 1em;
+    padding: 1em;
+    width: inherit;
+    border: 1px solid rgba(13, 101, 217, 1);
+    border-radius: 0.4em;
+}
+
+.task-table-heading h3 {
+    text-align: left;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 15px;
+    color: black
+}
+
+.task-table {
+    width: inherit;
+}
+
+.task-table th {
+    border-bottom: none;
+    padding-left: 1em;
+    padding-right: 5em;
+    padding-top: 0.75em;
+    padding-bottom: 0.75em;
+    text-align: left;
+    font-family: Montserrat;
+    font-size: 14px;
+    color: black
+}
+
+.task-table td{
+    border-bottom: none;
+    padding-left: 1em;
+    padding-right: 5em;
+    padding-top: 0.75em;
+    padding-bottom: 0.75em;
+    text-align: left;
+    font-family: Montserrat;
+
+    font-size: 13.5px;
+    color: black
+}
+
+.task-table th {
+    text-align: left;
+    color: black;
+}
+
+#task-icon {
+    color: rgb(101, 148, 209);
+    margin-left: 0.5em;
+    cursor: pointer;
+}
+
+.progress-task h3 {
+    text-align: left;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 15px;
+    color: black
+
+}
+
+.progress-task-left label {
+    text-align: left;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 10px;
+    color: rgba(163, 157, 157, 1);
+}
+
+.task-state-done{
+    background: green;
+    padding: 0.3em;
+    border-radius: 1em;
+    color: white;
+}
+
+.task-state-inp{
+    background: red;
+    padding: 0.3em;
+    border-radius: 1em;
+    color: white;
+    font-size: smaller;
+}
+
+.circle-percent{
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 10px;
+    color: rgba(163, 157, 157, 1);
+}
+.progress-bar-in-progress {
+    background: rgba(235, 28, 35, 1);
+    border-radius: 2em;
+    height: 0.4em;
+    width: 98%
+}
+
+.progress-bar-completed {
+    background: rgba(13, 101, 217, 1);
+    border-radius: 2em;
+    height: 0.4em;
+    width: 10em;
+}
+
+.bar-comp{
+    background: rgb(234, 238, 238) ;
+    border-radius: 2em;
+    height: 0.4em;
+    width: 98%;
+    margin-top: 0.5em;
+}
+
+.bar-comp span{
+    height: 0.4em;
+    float: left;
+    background: rgba(13, 101, 217, 1);
+}
+
+.bar-inpr{
+    background: rgb(234, 238, 238) ;
+    border-radius: 2em;
+    height: 0.4em;
+    width: 98%;
+    margin-top: 0.5em;
+}
+
+.bar-inpr span{
+    height: 0.4em;
+    float: left;
+    background: red;
+}
+
+
+.bar-progress-comp{
+    width: inherit;
+    animation: bar-progress-comp 2s;
+}
+
+@keyframes bar-progress-comp{
+    0%{
+        width: 0%;
+    }
+    100%{
+        width: 100%;
+    }
+}
+
+.bar-progress-inpr{
+    
+    animation: bar-progress-inpr 2s;
+}
+
+@keyframes bar-progress-inpr{
+    0%{
+        width: 0%;
+    }
+    100%{
+        width: 100%;
+    }
+}
+
+
+.circle {
+    position: relative;
+    top: 5px;
+    left: 5px;
+    text-align: center;
+    justify-content: center;
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+    background-color: #ffffff;
+}
+
+.circle-border {
+    position: relative;
+    text-align: center;
+    width: 110px;
+    height: 110px;
+    margin-top: 3em;
+    border-radius: 100%;
+    margin-left: 2%;
+    background-color: rgb(234, 238, 238)
+}
+
+@media (max-width: 1200px) {
+    #Screen_main {
+        display: none;
+    }
+
+    #Screen_mobile {
+        display: block;
+        width: 100vw;
+        height: auto;
+        background-color: rgb(234, 238, 238);
+        overflow-x: hidden;
+        padding: 0.5em;
+    }
+
+    .header-top i {
+        font-size: 1.0rem;
+        cursor: pointer;
+
+    }
+
+    .header-top {
+        padding: 0.5em;
+        width: 100vw;
+        text-align: center;
+    }
+
+    .image {
+        width: 40px;
+        height: 40px;
+        top: 0px;
+
+        margin-top: -1vh;;
+    }
+
+    #bell {
+        float: right;
+    }
+
+    #bars {
+        float: left;
+    }
+
+    .header-sub {
+        padding: 0.5em;
+        width: 100vw;
+    }
+
+    .header-user {
+        text-align: left;
+        font-family: Montserrat;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 22px;
+        color: rgba(13, 101, 217, 1);
+    }
+
+    .header-p-task {
+        text-align: left;
+        font-family: Montserrat;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 12px;
+        color: rgba(163, 157, 157, 1);
+    }
+
+    .header-p-task-count {
+        white-space: nowrap;
+        text-align: left;
+        font-family: Montserrat;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 12px;
+        color: black;
+    }
+
+    .task-head h3 {
+        text-align: left;
+        font-family: Montserrat;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 17px;
+        color: black
+    }
+
+    .task-head {
+        padding: 0.5em;
+        width: 100vw;
+    }
+
+    .add-task-m {
+        display: grid;
+        padding: 0.5em;
+        width: 95vw;
+        
+    }
+
+    .textarea-m {
+        padding: 0.5em;
+        border: 1px solid rgba(13, 101, 217, 1);
+        border-radius: 0.4em;
+        height: 10em;
+        width: 90vw;
+        color:rgb(68, 70, 72)
+    }
+
+    .textarea-m:focus {
+        border: 2px solid rgba(13, 101, 217, 1);
+        outline: none;
+
+    }
+    
+    .textarea-m-error{
+        padding: 0.5em;
+        border: 2px solid red;
+        border-radius: 0.4em;
+        height: 10em;
+        width: 90vw;
+        color:rgb(68, 70, 72)
+    }
+    
+    .textarea-m-error:focus {
+        border: 2px solid red;
+        outline: none;
+    }
+    .btn-add-task-m {
+        background-color: rgba(107, 165, 242, 1);
+        width: 5em;
+        height: 1.5em;
+        color: rgba(255, 255, 255, 1);
+        border: none;
+        font-size: 15px;
+        margin-top: 1em;
+        border-radius: 0.25em;
+    }
+
+    .btn-edit-task-m{
+        background-color: rgba(107, 165, 242, 1);
+        width: 7em;
+        height: 1.5em;
+        color: rgba(255, 255, 255, 1);
+        border: none;
+        margin-top: 1em;
+        font-size: 15px;
+        border-radius: 0.25em;
+    }
+
+    .btn-fltr {
+        padding: 0.5em;
+        width: 100vw;
+    }
+
+    .btn-fltr-task-m {
+        background-color: rgba(107, 165, 242, 1);
+        width: 5em;
+        height: 1.7em;
+        color: rgba(255, 255, 255, 1);
+        border: none;
+        border-radius: 0.25em;
+        margin-right: 0.5em;
+        font-size: 12px;
+    }
+
+    .btn-fltr-m-task-m {
+        background-color: rgba(163, 157, 157, 1);
+        width: 7em;
+        height: 1.7em;
+        color: rgba(255, 255, 255, 1);
+        border: none;
+        margin-right: 0.5em;
+        border-radius: 0.5em;
+        font-size: 12px;
+    }
+
+    .task-table-heading-m {
+        padding: 0.5em;
+        width: 100vw;
+    }
+
+    .task-table-heading-m h3 {
+        text-align: left;
+        font-family: Montserrat;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 17px;
+        color: black
+    }
+
+    .table-m {
+        width: inherit;
+        height: 13em;
+        margin: 0.5em;
+        border: 1px solid rgba(13, 101, 217, 1);
+        border-radius: 0.4em;
+        width: 90vw;
+        background-color: rgba(255, 255, 255, 1);
+    }
+
+    .tab-row {
+        width: 89.7vw;
+        height: 2em;
+        margin-top: 0.2em;
+        align-items: center;
+        background-color: rgba(255, 255, 255, 1);
+        border-bottom: 1px solid rgba(163, 157, 157, 1);
+    }
+
+    .tab-row input {
+        float: left;
+        height: 20px;
+        margin-left: 0.5em;
+        margin-top: 00.25em;
+    }
+
+    #bars-table {
+        float: right;
+        margin-top: 00.25em;
+    }
+
+    .tab-row-m {
+        width: 89.7vw;
+        height: 2em;
+        margin-top: 0.75em;
+        padding-left: 0.5em;
+        align-items: center;
+        background-color: rgba(255, 255, 255, 1);
+    }
+
+    .tab-row-lm {
+        width: 89.7vw;
+        height: 2.5em;
+        margin-top: 0.25em;
+        padding-top: 0.35em;
+        align-items: center;
+        padding-left: 0.5em;
+        background-color: rgba(255, 255, 255, 1);
+        border-bottom: 1px solid rgba(163, 157, 157, 1);
+        border-top: 1px solid rgba(163, 157, 157, 1);
+    }
+
+    .tab-content-l {
+        text-align: left;
+        font-family: Montserrat;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 13px;
+        color: black
+    }
+
+    .tab-content-r {
+        padding-right: 0.5em;
+        float: right;
+        font-family: Montserrat;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 13px;
+        color: black
+    }
+
+    #task-icon-l {
+        color: rgb(101, 148, 209);
+        cursor: pointer;
+        padding-top: 0.6em;
+        padding-left: 15vw;
+    }
+
+    #task-icon-r {
+        padding-top: 0.6em;
+        float: right;
+        padding-right: 15vw;
+        color: rgb(101, 148, 209);
+        cursor: pointer;
+    }
+}
+
+@media (max-width: 410px) {
+    .tab-row-lm {
+        width: 89.5vw;
+        height: 2.5em;
+        margin-top: 0.25em;
+        padding-top: 0.35em;
+        align-items: center;
+        padding-left: 0.5em;
+        background-color: rgba(255, 255, 255, 1);
+        border-bottom: 1px solid rgba(163, 157, 157, 1);
+        border-top: 1px solid rgba(163, 157, 157, 1);
+    }
+
+    .tab-row-m {
+        width: 89.5vw;
+        height: 2em;
+        margin-top: 0.75em;
+        padding-left: 0.5em;
+        align-items: center;
+        background-color: rgba(255, 255, 255, 1);
+    }
+
+    .tab-row {
+        width: 89.5vw;
+        height: 2em;
+        margin-top: 0.2em;
+        align-items: center;
+        background-color: rgba(255, 255, 255, 1);
+        border-bottom: 1px solid rgba(163, 157, 157, 1);
+    }
+}
