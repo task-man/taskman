@@ -13,7 +13,7 @@ body {
 #Screen_main {
     display: flex;
     width: 100%;
-    height: auto;
+    height: inherit;
     background-color: rgb(234, 238, 238);
     overflow-x: hidden;
 }
