@@ -121,7 +121,7 @@ function Task() {
 
     const onEditClick = (id, description, complete) => {
 
-        settaskState({ ...taskState, edit_Task: true, id: id, complete: complete, description: description, showCompleted:true })
+        settaskState({ ...taskState, edit_Task: true, id: id, complete: complete, description: description, showCompleted: true })
     }
 
     const handleEditTask = () => {
@@ -204,7 +204,6 @@ function Task() {
                                     taskState.edit_Task ? <button className="btn-add-task" onClick={handleEditTask}>{taskState.btn_Name_edittask}</button> :
                                         <button className="btn-add-task" onClick={handleAddTask}>{taskState.btn_Name_addtask}</button>
                                 }
-
                             </div>
                             <div className="progress-task">
                                 <div className="progress-task-left">
@@ -213,7 +212,6 @@ function Task() {
                                     <label style={{ float: "right", paddingTop: "3em" }}>{taskCount.taskCompleted ? taskCount.taskCompleted : 0}%</label><br />
                                     <div className="bar-comp"><span className="bar-progress-comp" style={{
                                         width: taskCount.taskCompleted ? taskCount.taskCompleted + "%" : 0
-
                                     }}></span></div><br />
                                     <label style={{ paddingTop: "2em" }}>In Progress</label>
                                     <label style={{ float: "right", paddingTop: "2em" }}>{taskCount.taskInprogress ? taskCount.taskInprogress : 0}%</label><br />
@@ -304,16 +302,15 @@ function Task() {
                                     </tr>
                                     {
                                         tasks.map(
-
                                             task => <tr key={task._id}>
-
                                                 <td>{Parser(task.description)}</td>
                                                 <td>{task.completed ? <label className="task-state-done">Done</label>
                                                     : <label className="task-state-inp">In Progress</label>} </td>
-                                                {taskState.edit_Task ? <td> {taskState.showCompleted ? <div>
-                                                    {task.completed ? null : <input type="checkbox" id="IsCompleted" className="IsCompleted" value="Completed"
-                                                    onClick={(event) => handleCompletedOnClick(event.target.value)}
-                                                />} </div>: null} </td> : null}
+                                                {taskState.edit_Task ? taskState.id === task._id ? <td>
+                                                    {task.completed ? null : <div> {
+                                                        <input type="checkbox" id="IsCompleted" className="IsCompleted" value="Completed"
+                                                            onClick={(event) => handleCompletedOnClick(event.target.value)}
+                                                        />}</div>} </td> : <label/> : null}
                                                 <td>{moment(task.createdAt).format("DD MMMM, hh:mm A")}</td>
                                                 <td onClick={() => onEditClick(task._id, task.description, task.completed)}
                                                 ><i className="fas fa-edit" id="task-icon"></i></td>
@@ -323,7 +320,6 @@ function Task() {
                                         )
                                     }
                                 </table>
-
                             </div>
                         </div>
                     </div>
