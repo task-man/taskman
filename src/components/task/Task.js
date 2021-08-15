@@ -8,7 +8,8 @@ import moment from "moment";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import Parser from 'html-react-parser';
 import BounceLoader from "react-spinners/ClipLoader";
-import LoadingOverlay from 'react-loading-overlay'
+import LoadingOverlay from 'react-loading-overlay';
+import { CircularProgressbar } from 'react-circular-progressbar';
 
 
 const task_state = {
@@ -18,6 +19,7 @@ const task_state = {
     id: '',
     description: '',
     complete: false,
+    showCompleted: false,
     error: 'textarea',
     errorM: 'textarea-m'
 }
@@ -45,6 +47,7 @@ function Task() {
 
     useEffect(() => {
         get_task_lists();
+
         //window.document.get
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
@@ -56,10 +59,10 @@ function Task() {
 
     async function get_task_lists() {
         if (token) {
-            //setIsLoading(true)
+            setIncomplete(0)
+            setcomplete(0)
             await axios.get('/tasks?sortBy=createdAt:asc', { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
                 .then(response => {
-                    // setIsLoading(false)
                     setTasks(response.data)
                     setIncomplete(0)
                     response.data.forEach((task) => {
@@ -71,28 +74,30 @@ function Task() {
                         }
                     })
                 })
-
         } else {
             history.push('/login');
         }
     }
 
     function calculate() {
-        const incompleteTask = (incomplete * 100 / tasks.length)
+        const incompleteTask = () => {
+            return Math.round((incomplete * 100 / tasks.length))
+        }
 
-        const incompleteTaskC = ()=>  {
-            if(incomplete > 0) {
-                return (((incomplete * 100 / tasks.length) / 100) * 360)
+
+        const incompleteTaskC = () => {
+            if (incomplete > 0) {
+                return Math.round((((incomplete * 100 / tasks.length) / 100) * 360))
             }
-            else{
+            else {
                 return "NaN"
             }
         }
 
         const completeTask =
-            complete * 100 / tasks.length;
+            Math.round(complete * 100 / tasks.length);
 
-        settaskCount({ ...taskCount, taskCompleted: completeTask, taskInprogress: incompleteTask, taskInprogressC: incompleteTaskC() })
+        settaskCount({ ...taskCount, taskCompleted: completeTask, taskInprogress: incompleteTask(), taskInprogressC: incompleteTaskC() })
     }
 
     const handleAddTask = () => {
@@ -116,7 +121,7 @@ function Task() {
 
     const onEditClick = (id, description, complete) => {
 
-        settaskState({ ...taskState, edit_Task: true, id: id, complete: complete, description: description })
+        settaskState({ ...taskState, edit_Task: true, id: id, complete: complete, description: description, showCompleted: true })
     }
 
     const handleEditTask = () => {
@@ -146,7 +151,6 @@ function Task() {
                 get_task_lists();
             })
         }
-
     }
 
     const handleSideBar = () => {
@@ -158,6 +162,16 @@ function Task() {
             setsideBar(true)
         }
 
+    }
+
+    const handleCompletedOnClick = (state) => {
+
+        if (state === "Completed") {
+            settaskState({ ...taskState, complete: true })
+        }
+        else {
+            settaskState({ ...taskState, complete: false })
+        }
     }
 
     return (
@@ -190,7 +204,6 @@ function Task() {
                                     taskState.edit_Task ? <button className="btn-add-task" onClick={handleEditTask}>{taskState.btn_Name_edittask}</button> :
                                         <button className="btn-add-task" onClick={handleAddTask}>{taskState.btn_Name_addtask}</button>
                                 }
-
                             </div>
                             <div className="progress-task">
                                 <div className="progress-task-left">
@@ -199,7 +212,6 @@ function Task() {
                                     <label style={{ float: "right", paddingTop: "3em" }}>{taskCount.taskCompleted ? taskCount.taskCompleted : 0}%</label><br />
                                     <div className="bar-comp"><span className="bar-progress-comp" style={{
                                         width: taskCount.taskCompleted ? taskCount.taskCompleted + "%" : 0
-
                                     }}></span></div><br />
                                     <label style={{ paddingTop: "2em" }}>In Progress</label>
                                     <label style={{ float: "right", paddingTop: "2em" }}>{taskCount.taskInprogress ? taskCount.taskInprogress : 0}%</label><br />
@@ -208,10 +220,48 @@ function Task() {
                                     }}></span></div>
                                 </div>
                                 <div className="progress-task-right">
-                                    <div className="circle-border" style={{ backgroundImage: "linear-gradient(" + taskCount.taskInprogressC + "deg, transparent 50%, #E53B3B 50%), linear-gradient(0deg, #E53B3B 50%, transparent 50%)" }}>
-                                        <div className="circle"> <label className="circle-percent" style={{ paddingTop: "4.2em", paddingLeft: "0.2em" }}>{taskCount.taskInprogress ? taskCount.taskInprogress : 0}%</label>
-                                        </div>
-                                    </div>
+                                    <CircularProgressbar className="circle"
+                                        value={taskCount.taskInprogress ? taskCount.taskInprogress : 0}
+                                        text={`${taskCount.taskInprogress ? taskCount.taskInprogress : 0}%`}
+                                        strokeWidth={5}
+                                        styles={{
+                                            // Customize the root svg element
+                                            root: {},
+                                            // Customize the path, i.e. the "completed progress"
+                                            path: {
+                                                // Path color
+                                                stroke: `rgba(225, 0, 0, ${taskCount.taskInprogress ? taskCount.taskInprogress : 0 / 100})`,
+                                                // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
+                                                strokeLinecap: 'butt',
+                                                // Customize transition animation
+                                                transition: 'stroke-dashoffset 1s ease 0.5s',
+                                                // Rotate the path
+                                                transform: 'rotate(0.25turn)',
+                                                transformOrigin: 'center center',
+                                            },
+                                            // Customize the circle behind the path, i.e. the "total progress"
+                                            trail: {
+                                                // Trail color
+                                                stroke: 'rgba(13, 101, 217, 1)',
+                                                // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
+                                                strokeLinecap: 'butt',
+                                                // Rotate the trail
+                                                transform: 'rotate(0.25turn)',
+                                                transformOrigin: 'center center',
+                                            },
+                                            // Customize the text
+                                            text: {
+                                                // Text color
+                                                fill: 'rgba(163, 157, 157, 1)',
+                                                // Text size
+                                                fontSize: '10px',
+                                            },
+                                            // Customize background - only used when the `background` prop is true
+                                            background: {
+                                                fill: '#3e98c7',
+                                            },
+                                        }}
+                                    />
                                 </div>
                             </div>
                         </div>
@@ -245,18 +295,22 @@ function Task() {
                                     <tr>
                                         <th>Task Description</th>
                                         <th>Status</th>
+                                        {taskState.edit_Task ? <th>Completed</th> : null}
                                         <th>Date</th>
                                         <th>Edit</th>
                                         <th>Delete</th>
                                     </tr>
                                     {
                                         tasks.map(
-
                                             task => <tr key={task._id}>
-
                                                 <td>{Parser(task.description)}</td>
                                                 <td>{task.completed ? <label className="task-state-done">Done</label>
                                                     : <label className="task-state-inp">In Progress</label>} </td>
+                                                {taskState.edit_Task ? taskState.id === task._id ? <td>
+                                                    {task.completed ? null : <div> {
+                                                        <input type="checkbox" id="IsCompleted" className="IsCompleted" value="Completed"
+                                                            onClick={(event) => handleCompletedOnClick(event.target.value)}
+                                                        />}</div>} </td> : <label/> : null}
                                                 <td>{moment(task.createdAt).format("DD MMMM, hh:mm A")}</td>
                                                 <td onClick={() => onEditClick(task._id, task.description, task.completed)}
                                                 ><i className="fas fa-edit" id="task-icon"></i></td>
@@ -266,7 +320,6 @@ function Task() {
                                         )
                                     }
                                 </table>
-
                             </div>
                         </div>
                     </div>
@@ -279,7 +332,6 @@ function Task() {
                     <i className="fas fa-bars" id="bars" onClick={handleSideBar}></i>
                     <img src={ProfileImg} className="image" alt="some text" />
                     <i className="fas fa-bell" id="bell"></i>
-
                 </div>
 
                 <div className="header-sub">
