@@ -169,6 +169,12 @@ a:hover{
     }
 } */
 
+@media (max-width:1270px){
+    .sidebar {
+    width: 17%;
+    }
+}
+
 @media (max-width:1200px){
     .sidebar {
         height: auto;
