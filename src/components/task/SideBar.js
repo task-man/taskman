@@ -1,21 +1,30 @@
 import './SideBar.css'
 import axios from "axios";
 import { useHistory } from "react-router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-const active_state = {
-    taskActive: 'list-active',
-    statActive: 'list',
-    notifyActive: 'list',
-    settingsActive: 'list',
-    chatActive: 'list'
-}
 
 function SideBar(props) {
 
     const history = useHistory();
 
-    const [active, setActive] = useState(active_state);
+    const [taskactive, settaskActive] = useState("list-active");
+    const [chatactive, setchatActive] = useState("list");
+
+    useEffect(() => {
+       
+        if (window.location.pathname.toLowerCase() === "/join" || window.location.pathname.toLowerCase() === "/chat") {
+            setchatActive("list-active")
+            settaskActive("list")
+        }
+
+        if (window.location.pathname.toLowerCase() === "/task") {
+            settaskActive("list-active")
+            setchatActive("list")
+        }
+        //window.document.get
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     // For logout
     const handleLogout = () => {
@@ -33,22 +42,36 @@ function SideBar(props) {
 
     const handleTaskActive = () => {
         history.push('/task')
-        if (active.taskActive === 'list') {
-            setActive({ ...setActive, taskActive: 'list-active', statActive: 'list', notifyActive: 'list', settingsActive: 'list' })
+
+
+        if (window.location.pathname.toLowerCase() === "/task") {
+            settaskActive("list-active")
+            setchatActive("list")
         }
-        else {
-            setActive({ ...setActive, taskActive: 'list', statActive: 'list', notifyActive: 'list', settingsActive: 'list' })
-        }
+
+        else
+            settaskActive("list")
+
+
+        console.log(taskactive);
+
     }
 
     const handleTaskChat = () => {
+
         history.push('/join')
-        if (active.chatActive === 'list') {
-            setActive({ ...setActive, chatActive: 'list-active', taskActive: 'list', statActive: 'list', notifyActive: 'list', settingsActive: 'list' })
+
+        if (window.location.pathname.toLowerCase() === "/join") {
+            setchatActive("list-active")
+            settaskActive("list")
         }
-        else {
-            setActive({ ...setActive, chatActive: 'list', taskActive: 'list', statActive: 'list', notifyActive: 'list', settingsActive: 'list' })
-        }
+
+        else
+            setchatActive("list")
+
+
+        console.log(chatactive);
+
     }
 
     return (
@@ -59,24 +82,24 @@ function SideBar(props) {
                 LOGO
             </div>
             <ul className="ul-icons">
-                <li className={active.taskActive} onClick={handleTaskActive}>
+                <li className={taskactive} onClick={handleTaskActive}>
                     <i className="fas fa-tasks"></i>
                     Tasks
                 </li>
-                <li className={active.statActive}>
+                <li className="list">
                     <i className="fas fa-chart-line"></i>
                     Statistics
                 </li>
-                <li className={active.notifyActive}>
+                <li className="list">
                     <i className="fas fa-bell"></i>
                     Notifications
                 </li>
-                <li className={active.settingsActive}>
+                <li className="list">
                     <i className="fas fa-cog"></i>
                     Settings
                 </li>
-                <li className={active.chatActive} onClick={handleTaskChat}>
-                <i class="fas fa-comment-alt"></i>
+                <li className={chatactive} onClick={handleTaskChat}>
+                    <i class="fas fa-comment-alt"></i>
                     Chat
                 </li>
             </ul>
