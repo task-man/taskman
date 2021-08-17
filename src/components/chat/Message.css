@@ -125,4 +125,22 @@
         float: left;
         color:black;
     }
+
+    .message-input {
+        border: 1px solid #eeeeee;
+        padding: 5px;
+        width: 20%;
+        outline: none;
+        margin-right: 15px;
+    }
+    
+    .send-button {
+        cursor: pointer;
+        padding: 8px;
+        background: #7C5CBF;
+        border: none;
+        color: white;
+        font-size: 14px;
+        transition: background .3s ease;
+    }
 }

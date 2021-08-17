@@ -4,6 +4,7 @@ import queryString from 'query-string'
 import io from 'socket.io-client';
 import ProfileImg from '../../images/Profilen.png'
 import "./Message.css"
+import moment from "moment";
 //import "./Join.css"
 
 let socket;
@@ -65,7 +66,7 @@ export default function Message({ location }) {
                 <div class="message">
                     <p>
                         <span class="message__name">{messages.map(message =>
-                            <p>{message.username} {message.createdAt} <br /> {message.text}</p>
+                            <p>{message.username} {moment(message.createdAt).format("DD MMMM, hh:mm A")} <br /> {message.text}</p>
                         )}</span>
                     </p>
                 </div>

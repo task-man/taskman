@@ -25,15 +25,16 @@ export default function Join() {
                 <SideBar />
                 <div className="join-grid">
                     <div className="mt-2">
-                    <label>Display name</label>
+                    <label className= "label-name">Display name</label>
                         <input type="text" placeholder="Username" aria-label="Username"
                         value={name}
+                        className="join-input"
                         onChange={event => setName(event.target.value)}
                          />
                     </div>
                     
                     <div className="mt-2">
-                    <label>Room</label>
+                    <label  className= "label-name">Room</label>
                         <input
                             value={room}
                             style={{ border: "1px solid black" }}
@@ -62,18 +63,19 @@ export default function Join() {
                 </div>
                 <div className="join-grid">
                     <div className="mt-2">
-                    <label>Display name</label>
+                    <label  className= "label-name">Display name</label>
                         <input type="text" placeholder="Username" aria-label="Username"
                         value={name}
+                        className="join-input"
                         onChange={event => setName(event.target.value)}
                         aria-describedby="basic-addon1" />
                     </div>
                     
                     <div className="mt-2">
-                    <label>Room</label>
+                    <label  className= "label-name">Room</label>
                         <input
                             value={room}
-                            className="ml-2"
+                            className="join-input"
                             onChange={event => setRoom(event.target.value)}
                             placeholder="Enter room"
                         />

@@ -44,6 +44,7 @@ function Task() {
     const history = useHistory();
 
     let token = localStorage.getItem("token");
+    let Name = localStorage.getItem("name");
 
     useEffect(() => {
         get_task_lists();
@@ -182,7 +183,7 @@ function Task() {
                 <SideBar />
                 <div className="header">
                     <div className="header-sub-left">
-                        <h3 className="header-user">Hello, Umesh Patel</h3>
+                        <h3 className="header-user">Hello, {Name}</h3>
                         <p className="header-p-task">You have <span
                             className="header-p-task-count">{incomplete} tasks </span>to
                             complete</p>
@@ -387,8 +388,8 @@ function Task() {
                                 <label className="tab-content-l">Status</label>
                                 <label
                                     className="tab-content-r">{task.completed ? "Done" : "In Progress"}</label>
-
                             </div>
+                            
 
                             <div className="tab-row-last">
 
