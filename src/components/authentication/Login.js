@@ -56,7 +56,7 @@ function Login() {
                     let state_value = response.status
                     if (state_value === 200) {
                         setIsLoading(false)
-                        console.log(response)
+                        //console.log(response)
                         localStorage.setItem('token', response.data.token)
                         localStorage.setItem("user_id", response.data.user._id)
                         localStorage.setItem("name", response.data.user.name)

@@ -53,7 +53,7 @@ function SideBar(props) {
             settaskActive("list")
 
 
-        console.log(taskactive);
+        //console.log(taskactive);
 
     }
 
@@ -70,7 +70,7 @@ function SideBar(props) {
             setchatActive("list")
 
 
-        console.log(chatactive);
+        //console.log(chatactive);
 
     }
 
