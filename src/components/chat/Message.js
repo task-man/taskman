@@ -40,6 +40,12 @@ export default function Message({ location }) {
         })
     }, [messages])
 
+    useEffect(() => {
+        socket.on("locationMessage", (message) => {
+            setMessages([...messages, message])
+        })
+    }, [messages])
+
     const sendMessage = (event) => {
 
         event.preventDefault();
@@ -47,6 +53,26 @@ export default function Message({ location }) {
         if (message) {
             socket.emit('sendMessage', message, () => setMessage(''))
         }
+    }
+
+    const sendLocation = (event) => {
+
+        event.preventDefault();
+
+        if (!navigator.geolocation) {
+            return alert('Geolocation is not supported by your browser.') }
+        
+           
+            navigator.geolocation.getCurrentPosition((position) => {
+                console.log(position)
+                socket.emit('sendLocation', {
+                    latitude: position.coords.latitude,
+                    longitude: position.coords.longitude
+                }, () => {
+                   // $sendLocationButton.removeAttribute('disabled')
+                    
+                })
+            })
     }
 
     const handleSideBar = () => {
@@ -66,7 +92,13 @@ export default function Message({ location }) {
                 <div class="message">
                     <p>
                         <span class="message__name">{messages.map(message =>
-                            <p>{message.username} {moment(message.createdAt).format("DD MMMM, hh:mm A")} <br /> {message.text}</p>
+                            
+                            <p>{message.username} {moment(message.createdAt).format("DD MMMM, hh:mm A")} <br /> {message.text}
+                            {
+                               (!! message.url) ? <a href={message.url}>My Current Location</a> :  ""
+                            }
+                            
+                            </p>
                         )}</span>
                     </p>
                 </div>
@@ -91,7 +123,10 @@ export default function Message({ location }) {
                                 value={message}
                                 onChange={event => setMessage(event.target.value)}
                             />
-                            <button className="send-button" onClick={sendMessage}>Send
+                            <button className="send-button" style={{marginRight : "10px"}} onClick={sendMessage}>Send
+                            </button>
+
+                            <button className="send-button" onClick={sendLocation}>Send Location
                             </button>
                         </form>
                     </div>
