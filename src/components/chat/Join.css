@@ -1,0 +1,109 @@
+.join-container{
+    height: 100vh;
+    width: 100%;
+    background:#333333;
+    display: flex;
+    overflow: hidden;
+}
+
+.join-container-mob{
+    display: none;
+}
+
+.join-grid{
+    float: right;
+    width: 85%;
+    height: inherit;
+    text-align: center;
+    margin-top: 10%;
+}
+
+.header-top {
+    padding: 0.5em;
+    width: 100vw;
+    text-align: center;
+}
+
+#bell {
+    float: right;
+}
+
+#bars {
+    float: left;
+}
+
+.image {
+    width: 40px;
+    height: 40px;
+    top: 0px;
+
+    margin-top: -1vh;;
+}
+
+.input-grid{
+    width: 50%;
+}
+
+.join-input {
+    border: 1px solid #eeeeee;
+    padding: 5px;
+    outline: none;
+}
+
+.join-room {
+    cursor: pointer;
+    padding: 8px;
+    background: #7C5CBF;
+    border: none;
+    color: white;
+    font-size: 14px;
+    transition: background .3s ease;
+}
+
+.join-room:hover {
+    background: #6b47b8;
+}
+
+.join-room:disabled {
+    cursor: default;
+    background: #7c5cbf94;
+}
+
+.label-name{
+    color: white;
+    display: block;
+    font-size: 14px;
+    margin-bottom: 8px;
+    
+}
+
+@media (max-width: 1200px){
+    .join-container{
+        display: none;
+    }
+
+    .join-container-mob{
+    height: 100vh;
+    width: 100%;
+    background:#333333;
+    display: block;
+    }
+
+    .join-grid{
+        
+        width: 100%;
+        height: inherit;
+        text-align: center;
+        justify-content: center;
+    }
+    #bell {
+        float: right;
+        color: white;
+    }
+    
+    #bars {
+        float: left;
+        color: white;
+    }
+    
+}

@@ -56,8 +56,10 @@ function Login() {
                     let state_value = response.status
                     if (state_value === 200) {
                         setIsLoading(false)
+                        //console.log(response)
                         localStorage.setItem('token', response.data.token)
                         localStorage.setItem("user_id", response.data.user._id)
+                        localStorage.setItem("name", response.data.user.name)
                         history.push('/task');
                     }
                 }).catch(error => {
@@ -102,6 +104,7 @@ function Login() {
                         setIsLoading(false)
                         localStorage.setItem('token', response.data.token)
                         localStorage.setItem("user_id", response.data._id)
+                        localStorage.setItem("name", response.data.name)
                         alert("Sign up is successful!")
                         history.push('/task');
                     }
