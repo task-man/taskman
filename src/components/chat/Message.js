@@ -16,7 +16,7 @@ export default function Message({ location }) {
     const [sideBar, setsideBar] = useState(false);
     //const names = [];
 
-    const ENDPOINT = "localhost:5000"
+    const ENDPOINT = "https://umesh-chat-app.herokuapp.com/"
 
     useEffect(() => {
         console.log(location)
