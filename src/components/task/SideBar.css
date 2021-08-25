@@ -104,6 +104,33 @@ a:hover{
     }
 }
 
+@media (max-height:1000px){
+    .sidebar-footer{
+        margin-top: 130%;
+    }
+    .sidebar{
+        width:14.2em;
+    }
+}
+
+@media (max-height:900px){
+    .sidebar-footer{
+        margin-top: 120%;
+    }
+    .sidebar{
+        width:14.2em;
+    }
+}
+
+@media (max-height:800px){
+    .sidebar-footer{
+        margin-top: 110%;
+    }
+    .sidebar{
+        width:14.2em;
+    }
+}
+
  @media (max-height:700px){
     .sidebar-footer{
         margin-top: 90%;
