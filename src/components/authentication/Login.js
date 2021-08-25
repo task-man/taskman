@@ -126,10 +126,14 @@ function Login() {
 
     const addSignUpMode = () => {
         setClassName('containers sign-up-mode')
+
+        setSignUpObject({...signUpObject, username:'', email:'',password:''})
     }
 
     const removeSignUpMode = () => {
         setClassName('containers')
+
+        setloginObject({...loginObject, email:'',password:''})
     }
 
     return <LoadingOverlay
