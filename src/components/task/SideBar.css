@@ -106,7 +106,7 @@ a:hover{
 
 @media (max-height:1000px){
     .sidebar-footer{
-        margin-top: 130%;
+        margin-top: 150%;
     }
     .sidebar{
         width:14.2em;
@@ -115,7 +115,7 @@ a:hover{
 
 @media (max-height:900px){
     .sidebar-footer{
-        margin-top: 120%;
+        margin-top: 140%;
     }
     .sidebar{
         width:14.2em;
