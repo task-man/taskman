@@ -29,7 +29,7 @@ export default function Message({ location }) {
         })
 
         return () => {
-            socket.emit("disconnect");
+            socket.disconnect();
             socket.off();
         }
     }, [ENDPOINT]);
