@@ -1,7 +1,7 @@
 .sidebar {
     background-color: rgba(13, 101, 217, 1);
     width: 15%;
-    height: max-content;
+    height: 100vh;
     border-bottom-right-radius: 1em;
     border-top-right-radius: 1em;
 }
@@ -80,7 +80,7 @@ i{
 }
 
 .sidebar-footer{
-    margin-top: 75%;
+    margin-top: 100%;
     margin-bottom: 0.5em;
 
 }
@@ -106,7 +106,7 @@ a:hover{
 
  @media (max-height:700px){
     .sidebar-footer{
-        margin-top: 52%;
+        margin-top: 90%;
     }
     .sidebar{
         width:14.2em;
@@ -115,7 +115,7 @@ a:hover{
 
 @media (max-height:672px){
     .sidebar-footer{
-        margin-top: 44%;
+        margin-top: 75%;
         
     }
     .sidebar{
@@ -125,7 +125,7 @@ a:hover{
 
 @media (max-height:652px){
     .sidebar-footer{
-        margin-top: 38%;
+        margin-top: 70%;
     }
     .sidebar{
         width:13.8em;
@@ -134,7 +134,7 @@ a:hover{
 
 @media (max-height:642px){
     .sidebar-footer{
-        margin-top: 30%;
+        margin-top: 65%;
     }
     .sidebar{
         width:13.7em;
@@ -143,7 +143,7 @@ a:hover{
 
 @media (max-height:632px){
     .sidebar-footer{
-        margin-top: 28%;
+        margin-top: 60%;
     }
     .sidebar{
         width:13.5em ;
@@ -152,7 +152,7 @@ a:hover{
 
 @media (max-height:622px){
     .sidebar-footer{
-        margin-top: 20%;
+        margin-top: 55%;
     }
     .sidebar{
         width:13.4em ;
@@ -162,7 +162,7 @@ a:hover{
 
 @media (max-height:612px){
     .sidebar-footer{
-        margin-top: 20%;
+        margin-top: 50%;
     }
     .sidebar{
         width:13.2em;
@@ -257,7 +257,7 @@ i{
 
 .sidebar-footer{
     
-    margin-top: 17vh;
+    margin-top: 12vh;
     margin-bottom: 0.5em;
 }
 

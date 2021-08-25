@@ -152,8 +152,11 @@ export default function Message({ location }) {
                                 style={{ border: "1px solid black" }}
                                 value={message}
                                 onChange={event => setMessage(event.target.value)}
-                            />
-                            <button onClick={sendMessage}>Send
+                            /><br/>
+                            <button className="send-button" style={{marginRight : "10px", marginTop : "10px"}} onClick={sendMessage}>Send
+                            </button>
+
+                            <button className="send-button" style={{ marginTop : "10px"}} onClick={sendLocation}>Send Location
                             </button>
                         </form>
 

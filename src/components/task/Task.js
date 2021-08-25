@@ -326,13 +326,12 @@ function Task() {
                     </div>
                 </div>
             </div>
-
             <div id="Screen_mobile">
                 {sideBar ? <SideBar handleSideBar={handleSideBar} /> : null}
                 <div className="header-top">
-                    <i className="fas fa-bars" id="bars" onClick={handleSideBar}></i>
+                    <i className="fas fa-bars" id="bars-t" onClick={handleSideBar}></i>
                     <img src={ProfileImg} className="image" alt="some text" />
-                    <i className="fas fa-bell" id="bell"></i>
+                    <i className="fas fa-bell" id="bell-t"></i>
                 </div>
 
                 <div className="header-sub">
