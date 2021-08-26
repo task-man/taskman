@@ -76,7 +76,7 @@ function SideBar(props) {
 
     return (
         <div className="sidebar">
-            <i class="fas fa-angle-double-left" id="icon-back" onClick={props.handleSideBar}></i>
+            <i className="fas fa-angle-double-left" id="icon-back" onClick={props.handleSideBar}></i>
             <div className="header-logo">
                 <i className="fab fa-joomla"></i>
                 LOGO
@@ -99,8 +99,12 @@ function SideBar(props) {
                     Settings
                 </li>
                 <li className={chatactive} onClick={handleTaskChat}>
-                    <i class="fas fa-comment-alt"></i>
+                    <i className="fas fa-comment-alt"></i>
                     Chat
+                </li>
+
+                <li className="list" style={{textTransform :"uppercase"}}>
+                    {props.chatroom ?props.chatroom[0]:null}
                 </li>
             </ul>
             <div className="sidebar-footer">

@@ -14,11 +14,12 @@ import { CircularProgressbar } from 'react-circular-progressbar';
 
 const task_state = {
     btn_Name_addtask: "Add Task",
-    btn_Name_edittask: "Update Task",
+    btn_Name_edittask: "Update",
     edit_Task: false,
     id: '',
     description: '',
     complete: false,
+    currentTaskStatus: false,
     showCompleted: false,
     error: 'textarea',
     errorM: 'textarea-m'
@@ -65,6 +66,7 @@ function Task() {
             await axios.get('/tasks?sortBy=createdAt:asc', { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
                 .then(response => {
                     setTasks(response.data)
+
                     setIncomplete(0)
                     response.data.forEach((task) => {
                         if (task.completed === false) {
@@ -122,20 +124,33 @@ function Task() {
 
     const onEditClick = (id, description, complete) => {
 
-        settaskState({ ...taskState, edit_Task: true, id: id, complete: complete, description: description, showCompleted: true })
+        complete ?
+            settaskState({
+                ...taskState, edit_Task: true, id: id, complete: complete, description: description, showCompleted: true, error: "textarea"
+                , currentTaskStatus: complete
+            }) :
+
+            settaskState({
+                ...taskState, edit_Task: true, id: id, complete: complete, description: description, showCompleted: true, error: "textarea_edit"
+                , currentTaskStatus: complete
+            })
     }
 
     const handleEditTask = () => {
 
         if (token) {
-            setIsLoading(true)
-            axios.patch('/tasks/' + taskState.id, { description: taskState.description, completed: taskState.complete }, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
-                .then(response => {
-                    setIsLoading(false)
-                    get_task_lists()
-                    settaskState({ ...taskState, edit_Task: false, description: '' })
-                })
+            if (taskState.description === '') {
+                settaskState({ ...taskState, error: 'textarea-error_edit', errorM: 'textarea-m-error' })
+            } else {
+                setIsLoading(true)
+                axios.patch('/tasks/' + taskState.id, { description: taskState.description, completed: taskState.complete }, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
+                    .then(response => {
+                        setIsLoading(false)
+                        get_task_lists()
+                        settaskState({ ...taskState, edit_Task: false, description: '', error: 'textarea', currentTaskStatus: false })
+                    })
 
+            }
         }
         else {
             history.push('/login');
@@ -166,13 +181,10 @@ function Task() {
     }
 
     const handleCompletedOnClick = (state) => {
-
-        if (state === "Completed") {
+        state ?
             settaskState({ ...taskState, complete: true })
-        }
-        else {
+            :
             settaskState({ ...taskState, complete: false })
-        }
     }
 
     return (
@@ -194,13 +206,22 @@ function Task() {
                         <i className="fas fa-bell"></i>
                         <img src={ProfileImg} className="image" alt="some text" />
                     </div>
-                    <div class="card">
+                    <div className="card">
                         <div className="card-row-one">
                             <div className="add-task">
                                 <textarea className={taskState.error} value={taskState.description}
-                                    onChange={event => settaskState({ ...taskState, description: event.target.value, error: 'textarea' })}
+                                    onChange={event => taskState.edit_Task ? taskState.currentTaskStatus ? settaskState({ ...taskState, description: event.target.value, error: 'textarea' }) :
+                                        settaskState({ ...taskState, description: event.target.value, error: 'textarea_edit' }) :
+                                        settaskState({ ...taskState, description: event.target.value, error: 'textarea' })
+                                    }
                                     placeholder="Write Task"
                                 ></textarea>
+
+                                {
+                                    taskState.edit_Task ? taskState.currentTaskStatus ? null : <label style={{ paddingTop: "1em" }}>Completed <input type="checkbox" id="IsCompleted"
+                                        className="taskstatus"
+                                        onChange={(event) => handleCompletedOnClick(event.target.checked)} /></label> : null
+                                }
                                 {
                                     taskState.edit_Task ? <button className="btn-add-task" onClick={handleEditTask}>{taskState.btn_Name_edittask}</button> :
                                         <button className="btn-add-task" onClick={handleAddTask}>{taskState.btn_Name_addtask}</button>
@@ -293,33 +314,31 @@ function Task() {
                                     <h3>{tasks.length} Task - {incomplete} await to be completed</h3>
                                 </div>
                                 <table className="task-table">
-                                    <tr>
-                                        <th>Task Description</th>
-                                        <th>Status</th>
-                                        {taskState.edit_Task ? <th>Completed</th> : null}
-                                        <th>Date</th>
-                                        <th>Edit</th>
-                                        <th>Delete</th>
-                                    </tr>
-                                    {
-                                        tasks.map(
-                                            task => <tr key={task._id}>
-                                                <td>{Parser(task.description)}</td>
-                                                <td>{task.completed ? <label className="task-state-done">Done</label>
-                                                    : <label className="task-state-inp">In Progress</label>} </td>
-                                                {taskState.edit_Task ? taskState.id === task._id ? <td>
-                                                    {task.completed ? null : <div> {
-                                                        <input type="checkbox" id="IsCompleted" className="IsCompleted" value="Completed"
-                                                            onClick={(event) => handleCompletedOnClick(event.target.value)}
-                                                        />}</div>} </td> : <label/> : null}
-                                                <td>{moment(task.createdAt).format("DD MMMM, hh:mm A")}</td>
-                                                <td onClick={() => onEditClick(task._id, task.description, task.completed)}
-                                                ><i className="fas fa-edit" id="task-icon"></i></td>
-                                                <td onClick={() => handleDeleteTask(task._id)}><i
-                                                    className="fas fa-trash-alt" id="task-icon"></i></td>
-                                            </tr>
-                                        )
-                                    }
+                                    <tbody>
+                                        <tr>
+                                            <th>Task Description</th>
+                                            <th>Status</th>
+                                            <th>Owner</th>
+                                            <th>Date</th>
+                                            <th>Edit</th>
+                                            <th>Delete</th>
+                                        </tr>
+                                        {
+                                            tasks.map(
+                                                task => <tr key={task._id}>
+                                                    <td>{Parser(task.description)}</td>
+                                                    <td >{task.completed ? <label className="task-state-done">Done</label>
+                                                        : <label className="task-state-inp">In Progress</label>} </td>
+                                                    <td>{task.owner}</td>
+                                                    <td>{moment(task.createdAt).format("DD MMMM, hh:mm A")}</td>
+                                                    <td onClick={() => onEditClick(task._id, task.description, task.completed)}
+                                                    ><i className="fas fa-edit" id="task-icon"></i></td>
+                                                    <td onClick={() => handleDeleteTask(task._id)}><i
+                                                        className="fas fa-trash-alt" id="task-icon"></i></td>
+                                                </tr>
+                                            )
+                                        }
+                                    </tbody>
                                 </table>
                             </div>
                         </div>
@@ -370,11 +389,19 @@ function Task() {
                     <>
                         <div className="table-m">
                             <div className="tab-row">
-                                <input type="checkbox"></input>
+                                {
+                                    taskState.edit_Task ? taskState.id === task._id ?
+                                        task.completed ? null : <div> {
+                                            <input type="checkbox" id="IsCompleted" className="IsCompleted" 
+                                                onClick={(event) => handleCompletedOnClick(event.target.checked)}
+                                            />}</div> : <label /> : null
+                                    // taskState.edit_Task ? taskState.currentTaskStatus ? null : <label> <input type="checkbox" id="IsCompleted" className="taskstatus" value="Completed"
+                                    //     onClick={(event) => handleCompletedOnClick(event.target.value)} /></label> : null
+                                }
                                 <i className="fas fa-bars" id="bars-table"></i>
                             </div>
 
-                            <div key={task._id} className="tab-row-m">
+                            <div className="tab-row-m">
                                 <label className="tab-content-l">Task Description</label>
                                 <label className="tab-content-r">{Parser(task.description)}</label>
                             </div>
@@ -388,7 +415,7 @@ function Task() {
                                 <label
                                     className="tab-content-r">{task.completed ? "Done" : "In Progress"}</label>
                             </div>
-                            
+
 
                             <div className="tab-row-last">
 

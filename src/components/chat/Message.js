@@ -13,26 +13,32 @@ export default function Message({ location }) {
 
     const [message, setMessage] = useState(null)
     const [messages, setMessages] = useState([])
+    const [rooms, setRooms] = useState([]);
     const [sideBar, setsideBar] = useState(false);
     //const names = [];
 
     const ENDPOINT = "https://umesh-chat-app.herokuapp.com/"
 
     useEffect(() => {
-        console.log(location)
-        const { name, room } = queryString.parse(location.search);
+        function getMessage() {
+            const { name, room } = queryString.parse(location.search);
 
-        socket = io(ENDPOINT)
+            socket = io(ENDPOINT)
 
-        socket.emit("join", { username: name, room: room }, () => {
+            socket.emit("join", { username: name, room: room }, () => {
 
-        })
+            })
 
-        return () => {
-            socket.disconnect();
-            socket.off();
+            return () => {
+                socket.disconnect();
+                socket.off();
+            }
         }
-    }, [ENDPOINT]);
+        getMessage();
+
+        //eslint-disable-next-line react-hooks/exhaustive-deps
+
+    }, [ENDPOINT, location.search]);
 
     useEffect(() => {
         socket.on("message", (message) => {
@@ -44,7 +50,13 @@ export default function Message({ location }) {
         socket.on("locationMessage", (message) => {
             setMessages([...messages, message])
         })
-    }, [messages])
+
+        socket.on('roomData', ({ room }) => {
+            setRooms([...rooms, room])
+        })
+
+    }, [rooms,messages])
+
 
     const sendMessage = (event) => {
 
@@ -60,19 +72,20 @@ export default function Message({ location }) {
         event.preventDefault();
 
         if (!navigator.geolocation) {
-            return alert('Geolocation is not supported by your browser.') }
-        
-           
-            navigator.geolocation.getCurrentPosition((position) => {
-                console.log(position)
-                socket.emit('sendLocation', {
-                    latitude: position.coords.latitude,
-                    longitude: position.coords.longitude
-                }, () => {
-                   // $sendLocationButton.removeAttribute('disabled')
-                    
-                })
+            return alert('Geolocation is not supported by your browser.')
+        }
+
+
+        navigator.geolocation.getCurrentPosition((position) => {
+            console.log(position)
+            socket.emit('sendLocation', {
+                latitude: position.coords.latitude,
+                longitude: position.coords.longitude
+            }, () => {
+                // $sendLocationButton.removeAttribute('disabled')
+
             })
+        })
     }
 
     const handleSideBar = () => {
@@ -84,23 +97,24 @@ export default function Message({ location }) {
             setsideBar(true)
         }
     }
-    console.log(messages)
+    
 
     const MessageUser = () => {
         return (
             <div id="message-template" type="text/html">
-                <div class="message">
-                    <p>
-                        <span class="message__name">{messages.map(message =>
-                            
+                <div className="message">
+                    <div>
+                        <span className="message__name">{messages.map(message =>
+
                             <p>{message.username} {moment(message.createdAt).format("DD MMMM, hh:mm A")} <br /> {message.text}
-                            {
-                               (!! message.url) ? <a href={message.url}>My Current Location</a> :  ""
-                            }
-                            
+                                {
+                                    (!!message.url) ? <a href={message.url}>My Current Location</a> : ""
+                                }
+
                             </p>
+                            
                         )}</span>
-                    </p>
+                    </div>
                 </div>
             </div>
         )
@@ -108,22 +122,22 @@ export default function Message({ location }) {
 
     return (
         <div>
-            <div class="chat">
-                <SideBar />
-                <div class="chat__main">
-                    <div id="messages" class="chat__messages">
+            <div className="chat">
+                <SideBar chatroom= {rooms} />
+                <div className="chat__main">
+                    <div id="messages" className="chat__messages">
                         <MessageUser />
                     </div>
 
-                    <div class="compose">
+                    <div className="compose">
                         <form name="message-form" id="message-form">
                             <input type="text"
-                            className ="message-input"
+                                className="message-input"
                                 style={{ border: "1px solid black" }}
-                                value={message}
+                                value={message? message : "" }
                                 onChange={event => setMessage(event.target.value)}
                             />
-                            <button className="send-button" style={{marginRight : "10px"}} onClick={sendMessage}>Send
+                            <button className="send-button" style={{ marginRight: "10px" }} onClick={sendMessage}>Send
                             </button>
 
                             <button className="send-button" onClick={sendLocation}>Send Location
@@ -132,8 +146,8 @@ export default function Message({ location }) {
                     </div>
                 </div>
             </div>
-            <div class="chat-mob">
-                {sideBar ? <SideBar handleSideBar={handleSideBar} /> : null}
+            <div className="chat-mob">
+                {sideBar ? <SideBar handleSideBar={handleSideBar} chatroom= {rooms}  /> : null}
 
                 <div className="header-top">
                     <i className="fas fa-bars" id="bars-j" onClick={handleSideBar}></i>
@@ -141,22 +155,22 @@ export default function Message({ location }) {
                     <i className="fas fa-bell" id="bell-j"></i>
 
                 </div>
-                <div class="chat__main">
-                    <div id="messages" class="chat__messages">
+                <div className="chat__main">
+                    <div id="messages" className="chat__messages">
                         <MessageUser />
                     </div>
 
-                    <div class="compose">
+                    <div className="compose">
                         <form name="message-form" id="message-form">
                             <input type="text"
                                 style={{ border: "1px solid black" }}
-                                value={message}
+                                value={message? message : "" }
                                 onChange={event => setMessage(event.target.value)}
-                            /><br/>
-                            <button className="send-button" style={{marginRight : "10px", marginTop : "10px"}} onClick={sendMessage}>Send
+                            /><br />
+                            <button className="send-button" style={{ marginRight: "10px", marginTop: "10px" }} onClick={sendMessage}>Send
                             </button>
 
-                            <button className="send-button" style={{ marginTop : "10px"}} onClick={sendLocation}>Send Location
+                            <button className="send-button" style={{ marginTop: "10px" }} onClick={sendLocation}>Send Location
                             </button>
                         </form>
 
