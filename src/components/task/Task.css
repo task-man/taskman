@@ -119,6 +119,15 @@ body {
     width: 50%
 }
 
+.textarea_edit{
+    padding: 0.5em;
+    border: 1px solid rgba(13, 101, 217, 1);
+    border-radius: 0.4em;
+    height: 8em;
+    width: 98%;
+    color:rgb(68, 70, 72)
+}
+
 .textarea{
     padding: 0.5em;
     border: 1px solid rgba(13, 101, 217, 1);
@@ -126,6 +135,10 @@ body {
     height: 11em;
     width: 98%;
     color:rgb(68, 70, 72)
+}
+
+.taskstatus{
+    padding-left: 3em;
 }
 
 .textarea-error{
@@ -137,12 +150,32 @@ body {
     color:rgb(68, 70, 72)
 }
 
+
+.textarea-error_edit{
+    padding: 0.5em;
+    border: 2px solid red;
+    border-radius: 0.4em;
+    height: 8em;
+    width: 98%;
+    color:rgb(68, 70, 72)
+}
+
 .textarea:focus {
     border: 2px solid rgba(13, 101, 217, 1);
     outline: none;
 }
 
 .textarea-error:focus {
+    border: 2px solid red;
+    outline: none;
+}
+
+.textarea_edit:focus {
+    border: 2px solid rgba(13, 101, 217, 1);
+    outline: none;
+}
+
+.textarea-error_edit:focus {
     border: 2px solid red;
     outline: none;
 }
@@ -295,7 +328,7 @@ body {
 .task-table th {
     border-bottom: none;
     padding-left: 1em;
-    padding-right: 5em;
+    padding-right: 4em;
     padding-top: 0.75em;
     padding-bottom: 0.75em;
     text-align: left;
@@ -307,7 +340,7 @@ body {
 .task-table td{
     border-bottom: none;
     padding-left: 1em;
-    padding-right: 5em;
+    padding-right: 4em;
     padding-top: 0.75em;
     padding-bottom: 0.75em;
     text-align: left;
@@ -480,12 +513,14 @@ body {
         margin-top: -1vh;;
     }
 
-    #bell {
+    #bell-t {
         float: right;
+        color: black;
     }
 
-    #bars {
+    #bars-t {
         float: left;
+        color: black;
     }
 
     .header-sub {

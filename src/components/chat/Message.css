@@ -145,5 +145,9 @@
         transition: background .3s ease;
     }
 
+    .compose form{
+        display: block;
+    }
+
     
 }

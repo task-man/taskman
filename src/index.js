@@ -7,9 +7,9 @@ import axios from "axios";
 axios.defaults.baseURL = 'https://umesh-task-manager.herokuapp.com';
 
 ReactDOM.render(
-  <React.StrictMode>
+  <React.Fragment>
     <App />
-  </React.StrictMode>,
+  </React.Fragment>,
   document.getElementById('root')
 );
 
